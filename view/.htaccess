@@ -1,0 +1,15 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteRule ^Accueil$ index.php [L]
+RewriteRule ^Formations$ formations.php [L]
+RewriteRule ^Contact$ contact.php [L]
+RewriteRule ^Profil$ profil.php [L]
+RewriteRule ^Panier$ panier.php [L]
+RewriteRule ^Login$ login.php [L]
+RewriteRule ^Admin$ admin.php [L]
+RewriteRule ^FormationAdmin$ formationAdmin.php [L]
+RewriteRule ^ProfilAdmin$ profilAdmin.php [L]
+
+
+ErrorDocument 404 http://localhost/Projet/M2L/view/404.php

@@ -1,0 +1,4 @@
+[0303/113433.104:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Accès refusé. (0x5)
+[0303/113433.107:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: Le canal de communication a été fermé. (0x6D)
+[0303/113433.107:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Accès refusé. (0x5)
+[0303/113433.127:ERROR:crashpad_client_win.cc(660)] crash server failed to launch, no dump captured
