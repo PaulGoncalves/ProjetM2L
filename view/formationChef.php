@@ -48,7 +48,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
         <div class="header-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-8 col-xs-6">
                         <div class="user-menu">
                             <ul>
                                 <li><a href="profilChef.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
@@ -56,7 +56,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-xs-6">
                         <div class="header-right">
                             <ul class="list-unstyled list-inline">
                                 <li class="dropdown dropdown-small">
@@ -81,6 +81,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
         </div>
     </div> <!-- End site branding area -->
 
+
     <div class="mainmenu-area">
         <div class="container">
             <div class="row">
@@ -96,11 +97,23 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <ul class="nav navbar-nav">
                         <li><a href="indexChef?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
                         <li class="active"><a href="FormationChef?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                        <li><a href="listeSalarieChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des salariés</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <div class="search">
+                                <form method="POST">
+                                    <input type="text" class="form-control input-sm" maxlength="64" placeholder="Rechercher" />
+                                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+                        </li>
                     </ul>
                 </div>  
             </div>
         </div>
     </div><!-- End mainmenu area -->
+
 
     <div class="product-big-title-area">
         <div class="container">
@@ -114,6 +127,8 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
         </div>
     </div> <!-- End Page title area -->
 
+    <br />
+
     <div class="container">
         <table class="col-xs-12 col-md-12 table table-striped">
             <tr>
@@ -126,32 +141,6 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
             <?php include('../model/afficheFormationAdmin.php'); ?>
         </table>
 
-        <div>
-            <table class="col-xs-12 col-md-12 table table-striped">
-                <tr>
-                    <th>Titre</th>
-                    <th>Coût (Nb jour)</th>
-                    <th>Date</th>
-                    <th>Nombre Paces</th>
-                    <th>Contenu</th>
-                    <th>Validation</th>
-                </tr>
-                <tr>
-                    <form method="post" action="../controllers/adminInsertElement.php">
-                        <th><input type="text" name="titre"/></th>
-                        <th><input type="text" name="cout_jours"/></th>
-                        <th><input type="date" name="date_debut"/></th>
-                        <th><input type="text" name="nb_place"/></th>
-                        <th><input type="text" name="contenu"/></th>
-                        <th><input type="submit" Value="Ajouter" name="validForm"/></th>
-                    </form>
-                </tr>
-                <?php
-
-                ?>
-            </table>
-
-        </div>
 
     </div>
 
@@ -186,7 +175,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     <script src="../js/main.js"></script>
 
     <?php
-} else {
+                                                                        } else {
         $message="Vous devez vous connecter";
         echo $message.'<br />';
         echo '<a href="../view/Login">Page de connexion</a>';

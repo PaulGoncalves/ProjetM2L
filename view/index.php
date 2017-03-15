@@ -32,7 +32,9 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
         <!-- Custom CSS -->
+        <link rel="stylesheet" href="../css/owl.carousel.css">
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/responsive.css">
 
     </head>
     <body>
@@ -43,7 +45,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="profil.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
+                                <li><a href="Profil?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
 
                             </ul>
                         </div>
@@ -53,7 +55,8 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                         <div class="header-right">
                             <ul class="list-unstyled list-inline">
                                 <li class="dropdown dropdown-small">
-                                <li><a href="../controllers/deconnexion.php" name="deconnexion"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
+                                    <a href="../controllers/deconnexion.php"><i class="fa fa-sign-out"></i> Déconnexion</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -75,6 +78,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                             <a>Crédits : <span class="cart-amunt"> <?php echo $userinfo['nbs_jour']; ?></span><i class="fa fa-credit-card" aria-hidden="true"></i></a>
                         </div>
                     </div>
+
 
                 </div>
             </div>
@@ -100,7 +104,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     </div>  
                 </div>
             </div>
-        </div><!-- End mainmenu area -->
+        </div> <!-- End mainmenu area -->
 
         <div class="product-big-title-area">
             <div class="container">
@@ -119,16 +123,16 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                 <div class="col-md-6">
                     <br />
                     <h3>Historique des formations</h3>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-xs-6">
                         <p align="center"> <i class="fa fa-circle rouge" aria-hidden="true"></i> Refusée</p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-xs-6">
                         <p align="center"> <i class="fa fa-circle orange" aria-hidden="true"></i> En attente</p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-xs-6">
                         <p align="center"> <i class="fa fa-circle vert" aria-hidden="true"></i> Validée</p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-xs-6">
                         <p align="center"> <i class="fa fa-circle bleu" aria-hidden="true"></i> Effectuée</p>
                     </div>
                     <table class="table">
@@ -137,6 +141,36 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                             <th>Date début</th>
                             <th>Etat</th>
                         </tr>
+                        <?php 
+
+                                                                         $req = $bdd->query('SELECT formation.cout_jours, formation.date_debut, formation.id_f, type_formation.type FROM formation INNER JOIN type_formation ON formation.id_f = type_formation.id_f WHERE type = "Validée" ');
+                                                                         while($donnee = $req->fetch()) {
+
+
+                                                                             $date_actuelle = date('d-m-Y');
+
+                                                                             $ajout_date  = $donnee['cout_jours'];
+
+                                                                             $date_formation = $donnee['date_debut'];
+                                                                             $date_plus_jours = date('d-m-Y', strtotime($date_formation.' + '.$ajout_date.' days'));
+
+
+                                                                             if($donnee['type'] == 'Validée') {
+
+                                                                                 if($date_plus_jours < $date_actuelle ) {
+
+                                                                                     $type = 'Effectuée';
+
+                                                                                     $reqUpdate = $bdd->prepare('UPDATE type_formation SET type = :type WHERE type = "Validée" ');
+                                                                                     $reqUpdate->execute(array('type' => $type));
+
+
+                                                                                 }
+
+                                                                             }
+                                                                         }
+
+                        ?>
                         <?php include('../model/affichHistorique.php'); ?>
                     </table>
                     <p><br /></p>

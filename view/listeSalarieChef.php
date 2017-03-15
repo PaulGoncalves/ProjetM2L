@@ -1,19 +1,24 @@
 <?php
 include('../model/connexionBdd.php');
 session_start();
-    
-include('../model/infoSalarie.php');
 
+
+if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
+{
+    $getid = intval($_GET['id_s']);
+    $requser = $bdd->prepare('SELECT * FROM salarie WHERE id_s = ?');
+    $requser->execute(array($getid));
+    $userinfo = $requser->fetch();
+
+    if(isset($_SESSION['id_s']) AND $_GET['id_s'] == $_SESSION['id_s']) {
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Liste des formations</title>
+        <title>Liste des salariés</title>
 
         <!-- Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -24,7 +29,7 @@ include('../model/infoSalarie.php');
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="../css/owl.carousel.css">
@@ -43,16 +48,15 @@ include('../model/infoSalarie.php');
         <div class="header-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-8 col-xs-6">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="Profil?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
-
+                                <li><a href="<?php echo 'profilChef?id_s='.$_SESSION['id_s'] ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-xs-6">
                         <div class="header-right">
                             <ul class="list-unstyled list-inline">
                                 <li class="dropdown dropdown-small">
@@ -70,17 +74,9 @@ include('../model/infoSalarie.php');
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="Accueil?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                        <h1><a href="indexChef?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
                     </div>
                 </div>
-                
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a>Crédits : <span class="cart-amunt"> <?php echo $userinfo['nbs_jour']; ?></span><i class="fa fa-credit-card" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-
-                
             </div>
         </div>
     </div> <!-- End site branding area -->
@@ -98,65 +94,53 @@ include('../model/infoSalarie.php');
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="Accueil?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                        <li class="active"><a href="Formations?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
-                        <li><a href="Contact?id_s=<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
+                        <li><a href="indexchef?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                        <li><a href="FormationChef?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                        <li class="active"><a href="listeSalarieChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des salariés</a></li>
                     </ul>
                 </div>  
             </div>
         </div>
-    </div> <!-- End mainmenu area -->
+    </div><!-- End mainmenu area -->
 
     <div class="product-big-title-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>Liste des formations</h2>
-                        
-                        <?php if(isset($_GET['message'])) { echo $_GET['message']; } ?>
+                        <h2>Liste des salariés</h2>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> <!-- End Page title area -->
 
-    
-    <div class="single-product-area">
-        <div class="container">
-            <div class="row">
-                <div>
-                    <div>
-                        <table class="col-md-12 table table-striped">
-                            <tr>
-                                <th>Titre</th>
-                                <th>Coût (Nb jours)</th>
-                                <th>Date début</th>
-                                <th>Nombre Paces</th>
-                                <th>Contenu</th>
-                                <th>Ajouter au panier</th>
-                            </tr>
-                            <?php include('../model/afficheFormation.php'); ?>
-                        </table>
-                    </div>
+    <br />
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="col-md-6">
+                    <table class="col-md-12 table table-striped">
+                       <tr>
+                           <th>Nom</th>
+                           <th>Prenom</th>
+                           <th>Identifiant</th>
+                           <th>Email</th>
+                           <th>Crédits</th>
+                       </tr>
+                        <?php include('../model/listeSalaries.php'); ?>
+                    </table>
                 </div>
-
-
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-pagination text-center">
-                        <nav>
-                           
-                        </nav>                        
-                    </div>
+                <div class="col-md-6">
+                    
                 </div>
             </div>
         </div>
     </div>
-
-
+    <br />
+    <br />
+    <br />
 
 
     <div class="footer-bottom-area">
@@ -188,3 +172,17 @@ include('../model/infoSalarie.php');
     <script src="../js/main.js"></script>
     </body>
 </html>
+
+
+<?php
+                                                                        } else {
+        $message="Vous devez vous connecter";
+        echo $message.'<br />';
+        echo '<a href="../view/Login">Page de connexion</a>';
+    }
+} else {
+    $message="Vous devez vous connecter";
+    echo $message.'<br />';
+    echo '<a href="../view/Login">Page de connexion</a>';
+}
+?>

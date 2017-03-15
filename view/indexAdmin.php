@@ -10,6 +10,9 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     $userinfo = $requser->fetch();
 
     if(isset($_SESSION['id_s']) AND $_GET['id_s'] == $_SESSION['id_s']) {
+
+
+        include('../controllers/inscriptionSalarie.php');
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +47,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="profilAdmin.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
+                                <!-- <li><a href="profilAdmin.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li> -->
                             </ul>
                         </div>
                     </div>
@@ -87,7 +90,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="indexAdmin?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                        <li class="active"><a href="indexAdmin?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
                     </ul>
                 </div>  
             </div>
@@ -114,7 +117,8 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                 <div class="col-md-6">
                     <h3>Ajout d'un nouvel utilisateur</h3>
                     <hr>
-                    <form method="POST" action="../controllers/inscriptionSalarie.php">
+                    <div><?php if(isset($_SESSION['$message'])) {echo $_SESSION['$message']; } ?> </div>
+                    <form method="POST">
                         <label>Nom : </label><input type="text" name="nom"/>
                         <label>Prenom : </label><input type="text" name="prenom"/>
                         <label>Email : </label><input type="email" name="email"/>
@@ -134,45 +138,86 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                         <br />
                         <br />
                         <input type="submit" name="ValidInscription" value="Ajouter l'utilisateur"/><br /><br />
-                        <div><?php if(isset($_SESSION['message'])) {echo $_SESSION['message']; } ?> </div>
                     </form>
                 </div>
+
+                <div class="col-md-6">
+                    <form method="post" action="../controllers/adminInsertElement.php">
+                        <label>Titre :</label><input type="text" name="titre"/>
+                        <label>Coût (Nbs jours) :</label><input type="text" name="cout_jours"/>
+                        <label>Date :</label><input type="date" name="date_debut"/>
+                        <label>Nombre de places :</label><input type="text" name="nb_place"/>
+                        <label>Contenu :</label><textarea type="text" name="contenu"></textarea>
+
+                        <br />
+
+                        <div class="panel with-nav-tabs panel-default">
+                            <div class="panel-heading">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#tab1default" data-toggle="tab">Adresse déjà existante</a></li>
+                                    <li><a href="#tab2default" data-toggle="tab">Nouvelle adresse</a></li>
+                                </ul>
+                            </div>
+                            <div class="panel-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="tab1default">
+                                        
+                                    </div>
+                                    <div class="tab-pane fade" id="tab2default">
+                                        <label>Numéro :</label><input type="text" name="numero" />
+                                        <label>rue</label><input type="text" name="rue" />
+                                        <label>Ville :</label><input type="text" name="ville" />
+                                        <label>Code postal :</label><input type="text" name="ville" />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="submit" Value="Ajouter" name="validForm"/>
+                    </form>
+                    
+                        <br />
+                </div>
             </div>
+
         </div>
+    </div>
+
     </div>
 
 
 
-    <div class="footer-bottom-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="copyright">
-                        <p>&copy; Créer par <a href="#" target="_blank">Paul Goncalves</a></p>
-                    </div>
+<div class="footer-bottom-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="copyright">
+                    <p>&copy; Créer par <a href="#" target="_blank">Paul Goncalves</a></p>
                 </div>
             </div>
         </div>
-    </div> <!-- End footer bottom area -->
+    </div>
+</div> <!-- End footer bottom area -->
 
-    <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
+<!-- Latest jQuery form server -->
+<script src="https://code.jquery.com/jquery.min.js"></script>
 
-    <!-- Bootstrap JS form CDN -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- Bootstrap JS form CDN -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <!-- jQuery sticky menu -->
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/jquery.sticky.js"></script>
+<!-- jQuery sticky menu -->
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/jquery.sticky.js"></script>
 
-    <!-- jQuery easing -->
-    <script src="../js/jquery.easing.1.3.min.js"></script>
+<!-- jQuery easing -->
+<script src="../js/jquery.easing.1.3.min.js"></script>
 
-    <!-- Main Script -->
-    <script src="../js/main.js"></script>
+<!-- Main Script -->
+<script src="../js/main.js"></script>
 
-    <?php
-                                                                        } else {
+<?php
+    } else {
         $message="Vous devez vous connecter";
         echo $message.'<br />';
         echo '<a href="../view/Login">Page de connexion</a>';
@@ -182,7 +227,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     echo $message.'<br />';
     echo '<a href="../view/Login">Page de connexion</a>';
 }
-    ?>
+?>
 
-    </body>
+</body>
 </html>

@@ -9,8 +9,11 @@ $reqtype = $bdd->query('SELECT type_formation.id_f, type_formation.id_t, type_fo
                         ON type_formation.id_s = salarie.id_s
                         WHERE type = "En attente"');
 
-while($donnees = $reqtype->fetch()) {
-    echo '<tr>
+if($donnees = $reqtype->rowCount() > 0) {
+
+
+    while($donnees = $reqtype->fetch()) {
+        echo '<tr>
             <td><p class="orange-text"><i class="fa fa-spinner fa-pulse fa-fw"></i> '.$donnees['type'].'</p></td>
             <td>'.$donnees['titre'].'</td>
             <td>'.date("d/m/Y", strtotime($donnees['date_debut'])).'</td>
@@ -19,7 +22,13 @@ while($donnees = $reqtype->fetch()) {
             <td><a class="vert-text" href="../model/accepteFormation.php?id_s='.$_SESSION['id_s'].'&id_formation='.$donnees['id_f'].'&id_salarie='.$donnees['id_s'].'"> <i class="fa fa-check fa-2x" aria-hidden="true"></i> </a></td>
             <td><a class="rouge-text" href="../model/refuseFormation.php?id_s='.$_SESSION['id_s'].'&id_formation='.$donnees['id_f'].'&id_salarie='.$donnees['id_s'].'"> <i class="fa fa-times fa-2x" aria-hidden="true"></i> </a></td>
         </tr>';
-}
+    }
 
+} else {
+    $message = '<p  class="textFormationNone"  align="center">Il n\'y a aucune demande de formation</p>';
+    echo '<tr>
+            <td class="textFormationNone" COLSPAN=7>'.$message.'</td>
+        </tr>';
+}
 
 ?>

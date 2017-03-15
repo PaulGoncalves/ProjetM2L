@@ -1,6 +1,6 @@
 <?php
 
-$reponse = $bdd->query('SELECT * FROM formation WHERE date_debut > CURDATE() ORDER BY date_debut');
+$reponse = $bdd->query('SELECT * FROM formation WHERE date_debut > CURDATE() AND nb_place >= 1 ORDER BY date_debut');
 
 while ($donneesformations = $reponse->fetch())
 { 

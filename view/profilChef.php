@@ -48,7 +48,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
         <div class="header-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-8 col-xs-6">
                         <div class="user-menu">
                             <ul>
                                 <li><a href="ProfilChef?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
@@ -56,7 +56,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-xs-6">
                         <div class="header-right">
                             <ul class="list-unstyled list-inline">
                                 <li class="dropdown dropdown-small">
@@ -96,6 +96,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <ul class="nav navbar-nav">
                         <li><a href="indexChef?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
                         <li><a href="FormationChef?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                        <li><a href="listeSalarieChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des salariés</a></li>
                     </ul>
                 </div>  
             </div>
