@@ -47,7 +47,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <!-- <li><a href="profilAdmin.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li> -->
+                                <!-- <li><a href="profilAdmin.php?id_s=<?php //echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li> -->
                             </ul>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="indexAdmin?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                        <h1><a href="indexAdmin.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="indexAdmin?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                        <li class="active"><a href="indexAdmin.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
                     </ul>
                 </div>  
             </div>
@@ -142,6 +142,9 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                 </div>
 
                 <div class="col-md-6">
+                    <h3>Ajout d'une nouvelle formation</h3>
+                    <hr />
+                    <?php if(isset($_GET['message'])) { echo $_GET['message']; } ?>
                     <form method="post" action="../controllers/adminInsertElement.php">
                         <label>Titre :</label><input type="text" name="titre"/>
                         <label>Coût (Nbs jours) :</label><input type="text" name="cout_jours"/>
@@ -161,73 +164,74 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                             <div class="panel-body">
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab1default">
-                                        
+                                        <label>Choix de l'adresse :</label>
+                                        <select name="adresse_complete">
+                                            <?php include('../controllers/affichageAdresseAdmin.php'); ?>
+                                        </select>
+                                        <br />
+                                        <br />
+                                        <input type="submit" Value="Ajouter la formation" name="validFormAdresseExist"/>
                                     </div>
                                     <div class="tab-pane fade" id="tab2default">
                                         <label>Numéro :</label><input type="text" name="numero" />
-                                        <label>rue</label><input type="text" name="rue" />
+                                        <label>rue :</label><input type="text" name="rue" />
                                         <label>Ville :</label><input type="text" name="ville" />
-                                        <label>Code postal :</label><input type="text" name="ville" />
-                                        
+                                        <label>Code postal :</label><input type="text" name="codePostal" />
+                                        <br />
+                                        <br />
+                                        <input type="submit" Value="Ajouter la formation" name="validFormAdresseNew"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <input type="submit" Value="Ajouter" name="validForm"/>
                     </form>
-                    
-                        <br />
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    </div>
-
-
-
-<div class="footer-bottom-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="copyright">
-                    <p>&copy; Créer par <a href="#" target="_blank">Paul Goncalves</a></p>
                 </div>
             </div>
         </div>
     </div>
-</div> <!-- End footer bottom area -->
 
-<!-- Latest jQuery form server -->
-<script src="https://code.jquery.com/jquery.min.js"></script>
 
-<!-- Bootstrap JS form CDN -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-<!-- jQuery sticky menu -->
-<script src="../js/owl.carousel.min.js"></script>
-<script src="../js/jquery.sticky.js"></script>
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="copyright">
+                        <p>&copy; Créer par <a href="#" target="_blank">Paul Goncalves</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End footer bottom area -->
 
-<!-- jQuery easing -->
-<script src="../js/jquery.easing.1.3.min.js"></script>
+    <!-- Latest jQuery form server -->
+    <script src="https://code.jquery.com/jquery.min.js"></script>
 
-<!-- Main Script -->
-<script src="../js/main.js"></script>
+    <!-- Bootstrap JS form CDN -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-<?php
+    <!-- jQuery sticky menu -->
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/jquery.sticky.js"></script>
+
+    <!-- jQuery easing -->
+    <script src="../js/jquery.easing.1.3.min.js"></script>
+
+    <!-- Main Script -->
+    <script src="../js/main.js"></script>
+
+    <?php
     } else {
         $message="Vous devez vous connecter";
         echo $message.'<br />';
-        echo '<a href="../view/Login">Page de connexion</a>';
+        echo '<a href="../view/login.php">Page de connexion</a>';
     }
 } else {
     $message="Vous devez vous connecter";
     echo $message.'<br />';
-    echo '<a href="../view/Login">Page de connexion</a>';
+    echo '<a href="../view/login.php">Page de connexion</a>';
 }
-?>
+    ?>
 
-</body>
+    </body>
 </html>

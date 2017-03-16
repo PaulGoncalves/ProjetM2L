@@ -1198,6 +1198,10 @@ select {
    font-size: 18px;
 }
 
+.font-21px {
+   font-size: 21px;
+}
+
 .nav-tabs {
     border-bottom: 1px solid #1abc9c;
 }
@@ -1216,4 +1220,13 @@ select {
     color: #333;
     background-color: #ffffff;
     border-color: #fff;
+}
+
+.entete_detail_formation {
+    padding-top: 1%;
+    border: 1px solid #1abc9c;
+}
+
+.detail_complet {
+    border: 1px solid #dedede;
 }

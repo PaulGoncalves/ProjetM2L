@@ -37,7 +37,7 @@ include('../model/infoSalarie.php');
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="Profil?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
+                                <li><a href="profil.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
 
                             </ul>
                         </div>
@@ -61,7 +61,7 @@ include('../model/infoSalarie.php');
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="Accueil?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                        <h1><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
                     </div>
                 </div>
 
@@ -88,9 +88,9 @@ include('../model/infoSalarie.php');
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="Accueil?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                        <li><a href="Formations?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
-                        <li class="active"><a href="Contact?id_s=<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
+                        <li><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                        <li><a href="formations.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                        <li class="active"><a href="contact.php?id_s=<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
                     </ul>
                 </div>  
             </div>

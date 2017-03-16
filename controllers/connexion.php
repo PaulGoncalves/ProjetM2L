@@ -25,7 +25,7 @@ if(isset($_POST['formconnexion'])) {
             $_SESSION['email'] = $userinfo['email'];
             $_SESSION['chef'] = $userinfo['chef'];
             $_SESSION['admin'] = $userinfo['admin'];
-            header("Location: ../view/Accueil?id_s=".$_SESSION['id_s']);
+            header("Location: ../view/index.php?id_s=".$_SESSION['id_s']);
 
             if($_SESSION['chef'] == 1) {
 

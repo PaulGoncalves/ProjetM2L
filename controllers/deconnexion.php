@@ -2,5 +2,5 @@
 session_start();
 $_SESSION = array();
 session_destroy();
-header("Location: ../view/Login");
+header("Location: ../view/login.php");
 ?>

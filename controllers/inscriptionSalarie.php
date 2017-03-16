@@ -15,12 +15,12 @@ if(isset($_POST['ValidInscription'])) {
 
         $insertsalarie = $bdd->prepare('INSERT INTO salarie (nom, prenom, email, identifiant, mot_de_passe, nbs_jour, chef, admin)VALUES(?, ?, ?, ?, ?, ?, ?, ?)');
         $insertsalarie->execute(array($nom, $prenom, $email, $identifiant, $mdp, $nb_jours, $chefEquipe, $Admin));
-        $_SESSION['message'] = '<p align="center" style="color:green;">L\'utilisateur a bien été ajouté.</p>';
-        header('Location: ../view/indexAdmin?id_s='.$_SESSION['id_s']);
+        $_SESSION['message'] = '<p align="center" class="vert-text font-18px">L\'utilisateur a bien été ajouté.</p>';
+        header('Location: ../view/indexAdmin.php?id_s='.$_SESSION['id_s']);
 
     } else {
-        $_SESSION['$message'] = '<p align="center" style="color:red;">Vous devez remplir tous les champs.</p>';
-        header('Location: ../view/indexAdmin?id_s='.$_SESSION['id_s']);
+        $_SESSION['$message'] = '<p align="center" class="rouge-text font-18px">Vous devez remplir tous les champs.</p>';
+        header('Location: ../view/indexAdmin.php?id_s='.$_SESSION['id_s']);
     }
 }
 

@@ -2,23 +2,21 @@
 include('../model/connexionBdd.php');
 session_start();
 
+include('../model/infoSalarie.php');
 
-if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
-{
-    $getid = intval($_GET['id_s']);
-    $requser = $bdd->prepare('SELECT * FROM salarie WHERE id_s = ?');
-    $requser->execute(array($getid));
-    $userinfo = $requser->fetch();
+$reqaffiche = $bdd->query('SELECT formation.titre, formation.cout_jours, formation.date_debut, formation.nb_place, formation.contenu, formation.id_a, adresse.rue, adresse.numero_rue, adresse.code_postal, adresse.ville FROM formation INNER JOIN adresse ON formation.id_a = adresse.id_a WHERE id_f = '.$_GET['id_f']);
+$donneesFormation = $reqaffiche->fetch();
 
-    if(isset($_SESSION['id_s']) AND $_GET['id_s'] == $_SESSION['id_s']) {
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Liste des salariés</title>
+        <title>Liste des formations</title>
 
         <!-- Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -29,7 +27,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="../css/owl.carousel.css">
@@ -48,15 +46,16 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
         <div class="header-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-xs-6">
+                    <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="profilChef.php?id_s=<?php echo $_SESSION['id_s'] ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
+                                <li><a href="profil.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
+
                             </ul>
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4">
                         <div class="header-right">
                             <ul class="list-unstyled list-inline">
                                 <li class="dropdown dropdown-small">
@@ -74,9 +73,17 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                        <h1><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
                     </div>
                 </div>
+
+                <div class="col-sm-6">
+                    <div class="shopping-item">
+                        <a>Crédits : <span class="cart-amunt"> <?php echo $userinfo['nbs_jour']; ?></span><i class="fa fa-credit-card" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div> <!-- End site branding area -->
@@ -94,53 +101,74 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                        <li><a href="formationChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
-                        <li class="active"><a href="listeSalarieChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des salariés</a></li>
+                        <li><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                        <li class="active"><a href="formations.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                        <li><a href="contact.php?id_s=<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
                     </ul>
                 </div>  
             </div>
         </div>
-    </div><!-- End mainmenu area -->
+    </div> <!-- End mainmenu area -->
 
     <div class="product-big-title-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>Liste des salariés</h2>
+                        <h2>Detail de la <?php echo $donneesFormation['titre']; ?></h2>
+
+                        <?php if(isset($_GET['message'])) { echo $_GET['message']; } ?>
                     </div>
                 </div>
             </div>
         </div>
-    </div> <!-- End Page title area -->
+    </div>
 
-    <br />
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-offset-1 col-md-10">
-                <div class="col-md-6">
-                    <table class="col-md-12 table table-striped">
-                       <tr>
-                           <th>Nom</th>
-                           <th>Prenom</th>
-                           <th>Identifiant</th>
-                           <th>Email</th>
-                           <th>Crédits</th>
-                       </tr>
-                        <?php include('../model/listeSalaries.php'); ?>
-                    </table>
-                </div>
-                <div class="col-md-6">
-                    
+    <div class="single-product-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 detail_complet">
+                   <br />
+                    <div class="col-md-3">
+                        <a href="formations.php?id_s=<?php echo $_SESSION['id_s'] ?>"><input type="submit" value="Retour à la liste des formations"/></a>
+                    </div>
+                    <div class="col-md-12">
+                        <br />
+                        <hr />
+                        <br />
+                    </div>
+                    <div class="col-md-12 entete_detail_formation">
+                        <h2><?php echo $donneesFormation['titre']; ?></h2>
+                    </div>
+                    <div class="col-md-12"><br /><br /></div>
+                    <div class="col-md-12">
+                        <h3>Coût de la formation : <span class="font-21px"><?php echo $donneesFormation['cout_jours']; ?></span></h3>
+                    <br />
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Date de début de la formation : <span class="font-21px"><?php echo date('d/m/Y', strtotime($donneesFormation['date_debut'])); ?></span>    </h3>
+                    <br />
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Nombre de place restante pour cette formation : <?php echo $donneesFormation['nb_place']; ?></h3>
+                    <br />
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Description de la formation : <?php echo $donneesFormation['contenu']; ?></h3>
+                    <br />
+                    </div>
+                    <div class="col-md-12">
+                        <h3>adresse : <br /><h4> <?php echo $donneesFormation['numero_rue'].' '.$donneesFormation['rue']; ?></h4></h3>
+                        <h4> <?php echo $donneesFormation['code_postal'].', '.$donneesFormation['ville'] ?></h4>
+                    <br />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <br />
-    <br />
-    <br />
+
+
 
 
     <div class="footer-bottom-area">
@@ -172,17 +200,3 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     <script src="../js/main.js"></script>
     </body>
 </html>
-
-
-<?php
-                                                                        } else {
-        $message="Vous devez vous connecter";
-        echo $message.'<br />';
-        echo '<a href="../view/login.php">Page de connexion</a>';
-    }
-} else {
-    $message="Vous devez vous connecter";
-    echo $message.'<br />';
-    echo '<a href="../view/login.php">Page de connexion</a>';
-}
-?>

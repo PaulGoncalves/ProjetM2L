@@ -1,5 +1,6 @@
 <?php
 include('../model/connexionBdd.php');
+include('../controllers/miseAJourHistorique.php');
 session_start();
 
 
@@ -45,7 +46,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="Profil?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
+                                <li><a href="profil.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
 
                             </ul>
                         </div>
@@ -69,7 +70,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="logo">
-                            <h1><a href="Accueil?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                            <h1><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
                         </div>
                     </div>
 
@@ -97,9 +98,9 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     </div> 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="Accueil?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                            <li><a href="Formations?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
-                            <li><a href="Contact?id_s=<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
+                            <li class="active"><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                            <li><a href="formations.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                            <li><a href="contact.php?id_s=<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
                         </ul>
                     </div>  
                 </div>
@@ -141,36 +142,6 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                             <th>Date début</th>
                             <th>Etat</th>
                         </tr>
-                        <?php 
-
-                                                                         $req = $bdd->query('SELECT formation.cout_jours, formation.date_debut, formation.id_f, type_formation.type FROM formation INNER JOIN type_formation ON formation.id_f = type_formation.id_f WHERE type = "Validée" ');
-                                                                         while($donnee = $req->fetch()) {
-
-
-                                                                             $date_actuelle = date('d-m-Y');
-
-                                                                             $ajout_date  = $donnee['cout_jours'];
-
-                                                                             $date_formation = $donnee['date_debut'];
-                                                                             $date_plus_jours = date('d-m-Y', strtotime($date_formation.' + '.$ajout_date.' days'));
-
-
-                                                                             if($donnee['type'] == 'Validée') {
-
-                                                                                 if($date_plus_jours < $date_actuelle ) {
-
-                                                                                     $type = 'Effectuée';
-
-                                                                                     $reqUpdate = $bdd->prepare('UPDATE type_formation SET type = :type WHERE type = "Validée" ');
-                                                                                     $reqUpdate->execute(array('type' => $type));
-
-
-                                                                                 }
-
-                                                                             }
-                                                                         }
-
-                        ?>
                         <?php include('../model/affichHistorique.php'); ?>
                     </table>
                     <p><br /></p>
@@ -230,12 +201,12 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                                                                         } else {
         $message="Vous devez vous connecter";
         echo $message.'<br />';
-        echo '<a href="../view/Login">Page de connexion</a>';
+        echo '<a href="../view/login.php">Page de connexion</a>';
     }
 } else {
     $message="Vous devez vous connecter";
     echo $message.'<br />';
-    echo '<a href="../view/Login">Page de connexion</a>';
+    echo '<a href="../view/login.php">Page de connexion</a>';
 }
         ?>
     </body>

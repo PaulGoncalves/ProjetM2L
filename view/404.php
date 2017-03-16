@@ -31,8 +31,7 @@
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="Profil"><i class="fa fa-user"></i> Mon Compte</a></li>
-                                <li><a href="Panier"><i class="fa fa-user"></i> Mon Panier</a></li>
+                                <li><a href="profil.php"><i class="fa fa-user"></i> Mon Compte</a></li>
 
                             </ul>
                         </div>
@@ -56,13 +55,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="Accueil">Form<span>ation</span></a></h1>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a href="Panier">Panier : <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <h1><a href="index.php">Form<span>ation</span></a></h1>
                     </div>
                 </div>
             </div>
@@ -82,10 +75,9 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="Accueil">Accueil</a></li>
-                        <li><a href="Formations">Liste des formations</a></li>
-                        <li><a href="Panier">Panier</a></li>
-                        <li><a href="Contact">Contact</a></li>
+                        <li class="active"><a href="index.php">Accueil</a></li>
+                        <li><a href="formations.php">Liste des formations</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </div>  
             </div>
