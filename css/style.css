@@ -152,6 +152,10 @@ body { font-family: 'Titillium Web', sans-serif; }
 .mainmenu-area ul.navbar-nav li:hover a, .mainmenu-area ul.navbar-nav li.active a {background: #222}
 .mainmenu-area .nav > li > a:focus {color: #000}
 
+.navbar-nav>li>.dropdown-menu {
+    background-color: #1abc9c;
+}
+
 .slider-area {clear: both}
 .slider-area, .promo-area, .brands-area, .maincontent-area, .footer-top-area, .product-widget-area, .product-breadcroumb-area, .single-product-area {position: relative;overflow: hidden}
 .zigzag-bottom {}
@@ -1160,27 +1164,27 @@ select {
     line-height: 22px;
 }
 
-    .search input {
-        position: absolute;
-        width: 0px;
-        float: Left;
-        margin-left: 210px;
-        -webkit-transition: all 0.7s ease-in-out;
-        -moz-transition: all 0.7s ease-in-out;
-        -o-transition: all 0.7s ease-in-out;
-        transition: all 0.7s ease-in-out;
-        height: 100%;
-        line-height: 18px;
-        padding: 0 2px 0 2px;
-        border-radius:1px;
-        font-size: 18px;
-    }
+.search input {
+    position: absolute;
+    width: 0px;
+    float: Left;
+    margin-left: 210px;
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+    height: 100%;
+    line-height: 18px;
+    padding: 0 2px 0 2px;
+    border-radius:1px;
+    font-size: 18px;
+}
 
-        .search:hover input, .search input:focus, .search input:active {
-            width: 200px;
-            margin-left: 0px;
-            color: black;
-        }
+.search:hover input, .search input:focus, .search input:active {
+    width: 200px;
+    margin-left: 0px;
+    color: black;
+}
 
 .btn {
     height: 100%;
@@ -1195,11 +1199,12 @@ select {
 }
 
 .font-18px {
-   font-size: 18px;
+    font-size: 18px;
 }
 
-.font-21px {
-   font-size: 21px;
+.font-19px {
+    font-size: 19px;
+    font-weight: normal;
 }
 
 .nav-tabs {
@@ -1224,9 +1229,35 @@ select {
 
 .entete_detail_formation {
     padding-top: 1%;
-    border: 1px solid #1abc9c;
+    border-bottom: 2px solid #1abc9c;
+    border-top: 2px solid #1abc9c;
 }
 
 .detail_complet {
-    border: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    border-top: 1px solid #dedede;
+}
+
+.caret-up {
+    width: 0; 
+    height: 0; 
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid;
+
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+
+.navbar-nav>li>.dropdown-menu {
+    background-color: #222222;
+}
+
+li.dropdown.active {
+    background-color: #222222;
+}
+
+li.dropdown.open {
+    background-color: #222222;
 }

@@ -129,13 +129,11 @@ $donneesFormation = $reqaffiche->fetch();
         <div class="container">
             <div class="row">
                 <div class="col-md-12 detail_complet">
-                   <br />
+                    <br />
                     <div class="col-md-3">
                         <a href="formations.php?id_s=<?php echo $_SESSION['id_s'] ?>"><input type="submit" value="Retour à la liste des formations"/></a>
                     </div>
                     <div class="col-md-12">
-                        <br />
-                        <hr />
                         <br />
                     </div>
                     <div class="col-md-12 entete_detail_formation">
@@ -143,25 +141,33 @@ $donneesFormation = $reqaffiche->fetch();
                     </div>
                     <div class="col-md-12"><br /><br /></div>
                     <div class="col-md-12">
-                        <h3>Coût de la formation : <span class="font-21px"><?php echo $donneesFormation['cout_jours']; ?></span></h3>
-                    <br />
+                        <h3>Coût de la formation : <span class="font-19px"><?php echo $donneesFormation['cout_jours']; ?> (En nombres de jours)</span></h3>
+                        <br />
                     </div>
                     <div class="col-md-12">
-                        <h3>Date de début de la formation : <span class="font-21px"><?php echo date('d/m/Y', strtotime($donneesFormation['date_debut'])); ?></span>    </h3>
-                    <br />
+                        <h3>Date de début de la formation : <span class="font-19px"><?php echo date('d/m/Y', strtotime($donneesFormation['date_debut'])); ?></span>
+                        </h3>
+                        <br />
                     </div>
                     <div class="col-md-12">
-                        <h3>Nombre de place restante pour cette formation : <?php echo $donneesFormation['nb_place']; ?></h3>
-                    <br />
+                        <?php $date_plus_jours = date('d-m-Y', strtotime($donneesFormation['date_debut'].' + '.$donneesFormation['cout_jours'].' days'));
+                        ?>
+                        <h3>Date de fin de la formation : <span class="font-19px"><?php echo $date_plus_jours; ?></span>
+                        </h3>
+                        <br />
                     </div>
                     <div class="col-md-12">
-                        <h3>Description de la formation : <?php echo $donneesFormation['contenu']; ?></h3>
-                    <br />
+                        <h3>Nombre de place restante pour cette formation : <span class="font-19px"><?php echo $donneesFormation['nb_place']; ?></span></h3>
+                        <br />
                     </div>
                     <div class="col-md-12">
-                        <h3>adresse : <br /><h4> <?php echo $donneesFormation['numero_rue'].' '.$donneesFormation['rue']; ?></h4></h3>
-                        <h4> <?php echo $donneesFormation['code_postal'].', '.$donneesFormation['ville'] ?></h4>
-                    <br />
+                        <h3>Description de la formation : <span class="font-19px"><?php echo $donneesFormation['contenu']; ?></span></h3>
+                        <br />
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Adresse : <br /></h3><h4><span class="font-19px"><?php echo $donneesFormation['numero_rue'].' '.$donneesFormation['rue']; ?></span></h4>
+                        <h4><span class="font-19px"><?php echo $donneesFormation['code_postal'].', '.$donneesFormation['ville'] ?></span></h4>
+                        <br />
                     </div>
                 </div>
             </div>

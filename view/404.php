@@ -31,7 +31,7 @@
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="profil.php"><i class="fa fa-user"></i> Mon Compte</a></li>
+                                
 
                             </ul>
                         </div>
@@ -40,9 +40,6 @@
                     <div class="col-md-4">
                         <div class="header-right">
                             <ul class="list-unstyled list-inline">
-                                <li class="dropdown dropdown-small">
-                                <li><a href="../controllers/deconnexion.php" name="deconnexion"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
-                                </li>
                             </ul>
                     </div>
                 </div>
@@ -55,7 +52,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="index.php">Form<span>ation</span></a></h1>
+                        <h1><a href="login.php">Form<span>ation</span></a></h1>
                     </div>
                 </div>
             </div>
@@ -75,9 +72,9 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.php">Accueil</a></li>
-                        <li><a href="formations.php">Liste des formations</a></li>
-                        <li><a href="contact.php">Contact</a></li>
+                        <li><a href="login.php">Accueil</a></li>
+                        <li><a href="login.php">Liste des formations</a></li>
+                        <li><a href="login.php">Contact</a></li>
                     </ul>
                 </div>  
             </div>

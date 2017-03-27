@@ -18,7 +18,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Formation de <?php echo $_SESSION['identifiant'] ?></title>
+        <title>Historique des Formations</title>
 
         <!-- Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -98,9 +98,9 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                        <li class="active"><a href="formationChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                        <li><a href="formationChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
                         <li><a href="listeSalarieChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des salariés</a></li>
-                        <li class="dropdown">
+                        <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formation <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="historiqueChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">historique des formations</a></li>
@@ -134,7 +134,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>Liste des formations</h2>
+                        <h2>Historique des formations</h2>
                         <?php if(isset($_GET['message'])) { echo $_GET['message']; } ?>
                     </div>
                 </div>
@@ -145,20 +145,31 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     <br />
 
     <div class="container">
-        <table class="col-xs-12 col-md-12 table table-striped">
-            <tr>
-                <th>Titre</th>
-                <th>Coût (Nb jour)</th>
-                <th>Date</th>
-                <th>Nombre Paces</th>
-                <th>Contenu</th>
-                <th>Détails</th>
-                <th>Ajouter</th>
-            </tr>
-            <?php include('../model/afficheFormationAdmin.php'); ?>
-        </table>
-
-
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Historique des formations</h3>
+                <div class="col-md-3 col-xs-6">
+                    <p align="center"> <i class="fa fa-circle rouge" aria-hidden="true"></i> Refusée</p>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <p align="center"> <i class="fa fa-circle orange" aria-hidden="true"></i> En attente</p>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <p align="center"> <i class="fa fa-circle vert" aria-hidden="true"></i> Validée</p>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <p align="center"> <i class="fa fa-circle bleu" aria-hidden="true"></i> Effectuée</p>
+                </div>
+                <table class="table">
+                    <tr>
+                        <th>Titre de la formation</th>
+                        <th>Date début</th>
+                        <th>Etat</th>
+                    </tr>
+                    <?php include('../model/affichHistorique.php'); ?>
+                </table>
+            </div>
+        </div>
     </div>
 
 

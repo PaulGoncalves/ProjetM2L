@@ -77,6 +77,13 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                         <h1><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
                     </div>
                 </div>
+
+                <div class="col-sm-6">
+                    <div class="shopping-item">
+                        <a>Crédits : <span class="cart-amunt"> <?php echo $userinfo['nbs_jour']; ?></span><i class="fa fa-credit-card" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div> <!-- End site branding area -->
@@ -97,6 +104,18 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                         <li class="active"><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
                         <li><a href="formationChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
                         <li><a href="listeSalarieChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des salariés</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formation <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="historiqueChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">historique des formations</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>  
             </div>
@@ -143,7 +162,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                             <th>Prénom</th>
                             <th>Etat</th>
                         </tr>
-                        <?php include('../model/formationRefuseAdmin.php'); ?>
+                        <?php include('../controllers/formationRefuseAdmin.php'); ?>
                     </table>
                 </div>
             </div>
@@ -156,7 +175,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-offset-0 col-xs-12 col-md-offset-1 col-md-10">
-               <h3 id="validFormations" align="center">Validation des formations des employés</h3>
+                <h3 id="validFormations" align="center">Validation des formations des employés</h3>
                 <table class="col-xs-offset-0 col-xs-12 col-md-12 table table-striped">
                     <tr>
                         <th>Type Formation</th>
@@ -205,6 +224,9 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     <script src="../js/main.js"></script>
     </body>
 </html>
+
+<!-- Dropdown hover -->
+<script src="../js/dropdownHover.js"></script>
 
 
 <?php
