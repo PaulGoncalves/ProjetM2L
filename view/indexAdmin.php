@@ -13,6 +13,8 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
 
 
         include('../controllers/inscriptionSalarie.php');
+        
+        include('../core/stat.class.php');
 ?>
 
 <!DOCTYPE html>

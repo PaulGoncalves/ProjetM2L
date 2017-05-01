@@ -1,4 +1,7 @@
 <?php
+
+/*var_dump($_COOKIE);*/
+
 include('../model/connexionBdd.php');
 include('../controllers/miseAJourHistorique.php');
 session_start();
@@ -11,7 +14,11 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     $requser->execute(array($getid));
     $userinfo = $requser->fetch();
 
-    if(isset($_SESSION['id_s']) AND $_GET['id_s'] == $_SESSION['id_s']) {
+    if($_GET['id_s'] == isset($_SESSION['id_s']) || isset($_COOKIE['user_id'])) {
+        
+    if(isset($_COOKIE['user_id'])) { $_SESSION['id_s'] = $_COOKIE['user_id']; }
+        
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

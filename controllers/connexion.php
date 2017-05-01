@@ -16,26 +16,34 @@ if(isset($_POST['formconnexion'])) {
         if($userexist == 1) {
 
             $userinfo = $requser->fetch();
+
             $_SESSION['id_s'] = $userinfo['id_s'];
             $_SESSION['identifiant'] = $userinfo['identifiant'];
             $_SESSION['prenom'] = $userinfo['prenom'];
             $_SESSION['nom'] = $userinfo['nom'];
-            $_SESSION['credit'] = $userinfo['credit'];
             $_SESSION['nbs_jour'] = $userinfo['nbs_jour'];
             $_SESSION['email'] = $userinfo['email'];
             $_SESSION['chef'] = $userinfo['chef'];
             $_SESSION['admin'] = $userinfo['admin'];
-            header("Location: ../view/index.php?id_s=".$_SESSION['id_s']);
 
-            if($_SESSION['chef'] == 1) {
+            if(isset($_POST['retenir_mdp'])) {
+                setcookie('user_id', $userinfo['id_s'], time() + 10);
+                header("Location: ../view/index.php?id_s=".$_SESSION['id_s']);
+            } else {
 
-                $userinfo = $requser->fetch();
-                header('Location: ../view/indexChef.php?id_s='.$_SESSION['id_s']);
+                header("Location: ../view/index.php?id_s=".$_SESSION['id_s']);
                 
-            }elseif($_SESSION['admin'] == 1) {
+                if($_SESSION['chef'] == 1) {
 
-                $userinfo = $requser->fetch();
-                header('Location: ../view/indexAdmin.php?id_s='.$_SESSION['id_s']);
+                    $userinfo = $requser->fetch();
+                    header('Location: ../view/indexChef.php?id_s='.$_SESSION['id_s']);
+
+                }elseif($_SESSION['admin'] == 1) {
+
+                    $userinfo = $requser->fetch();
+                    header('Location: ../view/dashboard.php?id_s='.$_SESSION['id_s']);
+                }
+
             }
 
         } else {

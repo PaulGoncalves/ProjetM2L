@@ -1,5 +1,6 @@
 <?php
 include('../model/connexionBdd.php');
+include('../controllers/miseAJourHistorique.php');
 session_start();
 
 if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)

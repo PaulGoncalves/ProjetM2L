@@ -3,9 +3,9 @@ include('../model/connexionBdd.php');
 
 include('../model/formationRefuseAdmin.php');
 
-if($donnees = $reqValid->fetch() > 0) {
+if($donnees = $reqRefuse->rowCount() > 0) {
 
-    while($donnees = $reqValid->fetch()) {
+    while($donnees = $reqRefuse->fetch()) {
         echo '<tr>
             <td>'.$donnees['titre'].'</td>
             <td>'.date("d/m/Y", strtotime($donnees['date_debut'])).'</td>

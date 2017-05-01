@@ -42,7 +42,7 @@ include('../controllers/connexion.php');
                         <form method="POST" name="login">
                             <label class="text_login">Identifiant : </label><input type="text" placeholder="Entrez votre identifiant" name="identifiant"/>
                             <label class="text_login">Mot de passe : </label><input type="password" placeholder="Entrez votre mot de passe" name="mdp"/>
-                            <label class="text2_login col-md-10"><input type="checkbox" name="retenir_mdp" class="col-md-2 checkbox_login"/>Se souvenir de moi</label>
+                            <!--<label class="text2_login col-md-10"><input type="checkbox" name="retenir_mdp" class="col-md-2 checkbox_login"/>Se souvenir de moi</label>-->
                             <input type="submit" value="Connexion" class="bouton_login" name="formconnexion"/>
                         </form>
                         <br />
