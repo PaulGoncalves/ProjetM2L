@@ -2,7 +2,7 @@
 
 
 if(isset($_POST['ValidInscription'])) {
-    if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['identifiant']) AND !empty($_POST['email']) AND !empty($_POST['mot_de_passe']) AND !empty($_POST['nb_jours'])) {
+    if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['identifiant']) AND !empty($_POST['email']) AND !empty($_POST['mot_de_passe']) AND !empty($_POST['nb_jours']) AND !empty($_POST['numero']) AND !empty($_POST['rue']) AND !empty($_POST['codePostal']) AND !empty($_POST['ville'])) {
 
 
         $nom = htmlspecialchars($_POST['nom']);
@@ -13,10 +13,14 @@ if(isset($_POST['ValidInscription'])) {
         $nb_jours = htmlspecialchars($_POST['nb_jours']);
         $chefEquipe = htmlspecialchars($_POST['ChefEquipe']);
         $Admin = htmlspecialchars($_POST['Admin']);
+        $numero = htmlspecialchars($_POST['numero']);
+        $rue = htmlspecialchars($_POST['rue']);
+        $codePostal = htmlspecialchars($_POST['codePostal']);
+        $ville = htmlspecialchars($_POST['ville']);
 
         if (preg_match("#^[a-zA-ZéèêëùàîïöôËÄÖÜÊÂÔÛ ]{3,35}+$#", $nom)) {
 
-            if (preg_match("#^[a-zA-ZéèêëùàîïöôËÄÖÜÊÂÔÛ]+[ \-']?[[a-zA-ZéèêëùàîïöôËÄÖÜÊÂÔÛ]+[ \-']?]*[a-zA-ZéèêëùàîïöôËÄÖÜÊÂÔÛ]{3,35}+$#", $prenom)) {
+            if (preg_match("#^[a-zA-ZéèêëùàîïöôËÄÖÜÊÂÔÛ \-]{3,35}+$#", $prenom)) {
 
                 if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email)) {
 
@@ -40,10 +44,44 @@ if(isset($_POST['ValidInscription'])) {
 
                                         if(preg_match("#^[0-1]+$#", $chefEquipe)) {
 
-                                            $insertsalarie = $bdd->prepare('INSERT INTO salarie (nom, prenom, email, identifiant, mot_de_passe, nbs_jour, chef, admin)VALUES(?, ?, ?, ?, ?, ?, ?, ?)');
-                                            $insertsalarie->execute(array($nom, $prenom, $email, $identifiant, $mdp, $nb_jours, $chefEquipe, $Admin));
-                                            $message = '<p align="center" class="vert-text font-18px">L\'utilisateur a bien été ajouté.</p>';
-                                            header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                            if(preg_match("#^[0-9(Bis|Ter|Quat|bis|ter|quat) ]+$#", $numero)) {
+
+                                                if(preg_match("#^[a-zA-ZéèêëùàîïöôËÄÖÜÊÂÔÛ ]+$#", $rue)) {
+
+                                                    if(preg_match("#^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}+$#", $codePostal)) {
+
+                                                        if(preg_match("#^[a-zA-ZéèêëùàîïöôËÄÖÜÊÂÔÛ ]+$#", $ville)) {
+
+                                                            $reqAdresse = $bdd->prepare('INSERT INTO adresse(ville, rue, numero_rue, code_postal) VALUES(:ville, :rue, :numero_rue, :code_postal)');
+                                                            $reqAdresse->execute(array('ville' => $ville, 'rue' => $rue, 'numero_rue' => $numero, 'code_postal' => $codePostal));
+                                                            $id_a = $bdd->lastInsertId();
+
+                                                            $insertsalarie = $bdd->prepare('INSERT INTO salarie (nom, prenom, email, identifiant, mot_de_passe, nbs_jour, chef, admin, id_a)VALUES(:nom, :prenom, :email, :identifiant, :mot_de_passe, :nbs_jour, :chef, :admin, :id_a)');
+                                                            $insertsalarie->execute(array('nom' => $nom, 'prenom' => $prenom, 'email' => $email, 'identifiant' => $identifiant, 'mot_de_passe' => $mdp, 'nbs_jour' => $nb_jours, 'chef' => $chefEquipe, 'admin' => $Admin, 'id_a' => $id_a));
+                                                            $message = '<p align="center" class="vert-text font-18px">L\'utilisateur a bien été ajouté.</p>';
+                                                            header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+
+                                                        } else {
+                                                            $message = '<p align="center" class="vert-text font-18px">La ville n\'est pas valide</p>';
+                                                header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                                        }
+
+                                                    } else {
+                                                        $message = '<p align="center" class="vert-text font-18px">Le code postal n\'est pas valide</p>';
+                                                header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                                    }
+
+                                                } else {
+
+                                                    $message = '<p align="center" class="vert-text font-18px">Le nom de rue n\'est pas valide</p>';
+                                                header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                                }
+
+                                            } else {
+
+                                                $message = '<p align="center" class="vert-text font-18px">Le numéro de rue n\'est pas valide</p>';
+                                                header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                            }
 
                                         } else {
 

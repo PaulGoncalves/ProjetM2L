@@ -4,7 +4,14 @@ session_start();
 require('../fpdf/fpdf.php');
 include('../model/connexionBdd.php');
 
-$reqFacture = $bdd->query('SELECT type_formation.id_f, type_formation.id_t, type_formation.type, type_formation.id_s, formation.titre,
+    $reqSalarie = $bdd->query('SELECT salarie.nom, salarie.prenom, salarie.nbs_jour, salarie.id_a, adresse.numero_rue, adresse.ville, adresse.rue, adresse.code_postal
+                            FROM salarie
+                            INNER JOIN adresse
+                            ON salarie.id_a = adresse.id_a
+                            WHERE salarie.id_s='.$_GET['id_s']);
+$donneesSalarie = $reqSalarie->fetch();
+
+    $reqFacture = $bdd->query('SELECT type_formation.id_f, type_formation.id_t, type_formation.type, type_formation.id_s, formation.titre,
                         formation.cout_jours,formation.date_debut, formation.nb_place, formation.contenu, formation.id_f, formation.id_a, salarie.nom, salarie.prenom, salarie.nbs_jour, adresse.numero_rue, adresse.ville, adresse.rue, adresse.code_postal
                         FROM formation 
                         INNER JOIN type_formation
@@ -23,8 +30,13 @@ $numero = $donnees['numero_rue'];
 $rue = $donnees['rue'];
 $ville = $donnees['ville'];
 $codePostal = $donnees['code_postal'];
-$nomSalarie = $donnees['nom'];
-$prenomSalarie = $donnees['prenom'];
+$nomSalarie = $donneesSalarie['nom'];
+$prenomSalarie = $donneesSalarie['prenom'];
+$numeroSalarie = $donneesSalarie['numero_rue'];
+$rueSalarie = $donneesSalarie['rue'];
+$villeSalarie = $donneesSalarie['ville'];
+$codePostalSalarie = $donneesSalarie['code_postal'];
+$nbjoursSalarie = $donneesSalarie['nbs_jour'];
 
 
 
@@ -33,7 +45,7 @@ class PDF extends FPDF {
     // Header
     function Header() {
 
-        global $nomFormation, $nomSalarie, $prenomSalarie, $cout, $ville, $codePostal, $rue, $numero;
+        global $nomFormation, $nomSalarie, $prenomSalarie, $cout, $ville, $codePostal, $rue, $numero, $numeroSalarie, $rueSalarie, $villeSalarie, $codePostalSalarie, $nbjoursSalarie;
 
         //Cadre Haut Gauche --> Prestataire
         $this->SetFont('Arial','',16); //Police
@@ -61,10 +73,10 @@ class PDF extends FPDF {
         $this->Ln(12);// Saut de ligne
         $this->Cell(100); // Décalage à droite
         $this->SetFont('Arial','',12);
-        $this->Cell(0,10,'15 rue de la Mardotte',0,0);
+        $this->Cell(0,10,utf8_decode($numeroSalarie.' '.$rueSalarie),0,0);
         $this->Ln(6);// Saut de ligne
         $this->Cell(100); // Décalage à droite
-        $this->Cell(0,10,'77120 Mouroux',0,0);
+        $this->Cell(0,10, utf8_decode($codePostalSalarie.' '.$villeSalarie),0,0);
         $this->Ln(30);// Saut de ligne
 
 
@@ -93,6 +105,13 @@ class PDF extends FPDF {
         $this->Line(150, 251, 150, 261);
         $this->Cell(-48); // Décalage à droite
         $this->Cell(0,10, utf8_decode($cout.' credits'),0,0);
+        
+        $this->Ln(12);// Saut de ligne
+        $this->Cell(100); // Décalage à droite
+        $this->Cell(0,10, utf8_decode('Solde actuel'),1,0);
+        $this->Line(150, 263, 150, 273);
+        $this->Cell(-48); // Décalage à droite
+        $this->Cell(0,10, utf8_decode($nbjoursSalarie.' credits'),0,0);
 
 
 

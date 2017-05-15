@@ -212,6 +212,48 @@ Tip 2: you can also add an image using data-image tag
                                                     </div>
                                                 </div>
                                             </div>
+                                            
+                                            <div class="row">
+
+                                                <div class="panel with-nav-tabs panel-default">
+                                                    <div class="panel-heading">
+                                                        <ul class="nav nav-tabs">
+                                                            <li><h5>Nouvelle adresse</h5></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <div class="tab-content">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group label-floating">
+                                                                        <label class="control-label">Numéro</label>
+                                                                        <input type="text" class="form-control" name="numero" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="form-group label-floating">
+                                                                        <label class="control-label">Rue</label>
+                                                                        <input type="text" class="form-control" name="rue" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group label-floating">
+                                                                        <label class="control-label">Code postal</label>
+                                                                        <input type="number" class="form-control" name="codePostal" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group label-floating">
+                                                                        <label class="control-label">Ville</label>
+                                                                        <input type="text" class="form-control" name="ville" />
+                                                                    </div>
+                                                                </div>
+                                                                <br />
+                                                                <br />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
 
                                             <button type="submit" name="ValidInscription" class="btn btn-primary pull-right">Ajouter le salarié</button>
                                             <div class="clearfix"></div>
