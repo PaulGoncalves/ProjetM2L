@@ -214,12 +214,12 @@ Tip 2: you can also add an image using data-image tag
                                             <tbody>
                                                 <?php 
                                             
-                                                    while($donnees = $reqSalarie->fetch()) {
+                                                    while($donneesSalarie = $reqSalarie->fetch()) {
                                                     echo '<tr>
-                                                            <td>'.$donnees['nom'].'</td>
-                                                            <td>'.$donnees['prenom'].'</td>
-                                                            <td>'.$donnees['identifiant'].'</td>
-                                                            <td>'.$donnees['nbs_jour'].'</td>
+                                                            <td>'.$donneesSalarie['nom'].'</td>
+                                                            <td>'.$donneesSalarie['prenom'].'</td>
+                                                            <td>'.$donneesSalarie['identifiant'].'</td>
+                                                            <td>'.$donneesSalarie['nbs_jour'].'</td>
                                                         </tr>';
                                                     }
 
