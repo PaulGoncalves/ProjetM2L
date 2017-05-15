@@ -1261,3 +1261,16 @@ li.dropdown.active {
 li.dropdown.open {
     background-color: #222222;
 }
+
+.table_historique {
+    font-size: 16px;
+}
+
+.lien_historique {
+    color:black;
+    text-decoration: none;
+}
+
+.lien_historique:hover {
+    text-decoration: none;
+}

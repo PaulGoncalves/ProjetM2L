@@ -128,7 +128,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
 
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <br />
                     <h3>Historique des formations</h3>
                     <div class="col-md-3 col-xs-6">
@@ -143,11 +143,12 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <div class="col-md-3 col-xs-6">
                         <p align="center"> <i class="fa fa-circle bleu" aria-hidden="true"></i> Effectuée</p>
                     </div>
-                    <table class="table">
+                    <table class="table table_historique">
                         <tr>
                             <th>Titre de la formation</th>
                             <th>Date début</th>
                             <th>Etat</th>
+                            <th>Imprimer facture</th>
                         </tr>
                         <?php include('../model/affichHistorique.php'); ?>
                     </table>

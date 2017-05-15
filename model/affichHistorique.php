@@ -10,11 +10,20 @@ $reqhistorique = $bdd->query('SELECT type_formation.id_f, type_formation.id_t, t
                         WHERE salarie.id_s = '.$_SESSION['id_s'].'
                         ORDER BY type DESC');
 
+
+
 while($donnees = $reqhistorique->fetch()) {
-    echo '<tr class="'.$donnees['type'].'">
+    echo '<tr id="'.$donnees['id_f'].'" class="'.$donnees['type'].'">
             <td>'.$donnees['titre'].'</td>
             <td>'.date("d/m/Y", strtotime($donnees['date_debut'])).'</td>
             <td>'.$donnees['type'].'</td>
+            <td>';
+    if($donnees['type'] == 'Validée' | $donnees['type'] == 'Effectuée') {
+        echo '<a class="lien_historique" target="_blank" href="../PDF/facture.php?id_f='.$donnees['id_f'].'&id_s='.$donnees['id_s'].'"><i class="fa fa-download" aria-hidden="true"></i> Imprimer la facture</a>'   ;
+    } else {
+        echo 'La facture n\'est pas encore disponible';
+    }
+    echo '</td>
         </tr>';
 }
 ?>
