@@ -106,19 +106,8 @@ Tip 2: you can also add an image using data-image tag
                                         <i class="material-icons">dashboard</i>
                                         <p class="hidden-lg hidden-md">Dashboard</p>
                                     </a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">notifications</i>
-                                        <span class="notification">5</span>
-                                        <p class="hidden-lg hidden-md">Notifications</p>
-                                    </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Mike John responded to your email</a></li>
-                                        <li><a href="#">You have 5 new tasks</a></li>
-                                        <li><a href="#">You're now friend with Andrew</a></li>
-                                        <li><a href="#">Another Notification</a></li>
-                                        <li><a href="#">Another One</a></li>
+                                        <li><a href="dashboard.php?id_s=<?php echo $_SESSION['id_s']; ?>">Retour au dasboard</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -295,30 +284,17 @@ Tip 2: you can also add an image using data-image tag
                         <nav class="pull-left">
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a href="dashboard.php">
                                         Home
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
+                                    <a target="_blank" href="http://paulgoncalves-portfolio.esy.es/">
                                         Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
                                     </a>
                                 </li>
                             </ul>
                         </nav>
-                        <p class="copyright pull-right">
-                            &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                        </p>
                     </div>
                 </footer>
             </div>
