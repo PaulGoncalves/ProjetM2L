@@ -190,22 +190,40 @@ Tip 2: you can also add an image using data-image tag
                                                 <div class="panel with-nav-tabs panel-default">
                                                     <div class="panel-heading">
                                                         <ul class="nav nav-tabs">
-                                                            <li class="active"><a href="#tab1default" data-toggle="tab">Adresse déjà existante</a></li>
-                                                            <li><a href="#tab2default" data-toggle="tab">Nouvelle adresse</a></li>
+                                                            <li class="active"><a href="#tab1default" data-toggle="tab">Prestaire déjà existant</a></li>
+                                                            <li><a href="#tab2default" data-toggle="tab">Nouveau prestataire</a></li>
                                                         </ul>
                                                     </div>
                                                     <div class="panel-body">
                                                         <div class="tab-content">
                                                             <div class="tab-pane fade in active" id="tab1default">
-                                                                <label>Choix de l'adresse :</label>
+                                                                <label>Choix du prestataire :</label>
                                                                 <select class="Select" name="adresse_complete">
-                                                                    <?php include('../controllers/affichageAdresseAdmin.php'); ?>
+                                                                    <?php include('../controllers/affichagePrestataireAdmin.php'); ?> <!-- A MODIFIER -->
                                                                 </select>
                                                                 <br />
                                                                 <br />
                                                                 <input type="submit" Value="Ajouter la formation" class="btn btn-primary pull-right" name="validFormAdresseExist"/>
                                                             </div>
                                                             <div class="tab-pane fade" id="tab2default">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group label-floating">
+                                                                        <label class="control-label">Nom du prestataire</label>
+                                                                        <input type="text" class="form-control" name="nom" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group label-floating">
+                                                                        <label class="control-label">Adresse mail</label>
+                                                                        <input type="email" class="form-control" name="mail" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group label-floating">
+                                                                        <label class="control-label">Téléphone</label>
+                                                                        <input type="text" class="form-control" name="tel" />
+                                                                    </div>
+                                                                </div>
                                                                 <div class="col-md-4">
                                                                     <div class="form-group label-floating">
                                                                         <label class="control-label">Numéro</label>
@@ -232,7 +250,7 @@ Tip 2: you can also add an image using data-image tag
                                                                 </div>
                                                                 <br />
                                                                 <br />
-                                                                <input type="submit" Value="Ajouter la formation" class="btn btn-primary pull-right" name="validFormAdresseNew"/>
+                                                                <input type="submit" Value="Ajouter la formation" class="btn btn-primary pull-right" name="validFormPrestataireNew"/>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -12,9 +12,12 @@ $rue = htmlspecialchars($_POST['rue']);
 $ville = htmlspecialchars($_POST['ville']);
 $codePostal = htmlspecialchars($_POST['codePostal']);
 $id_a = htmlspecialchars($_POST['adresse_complete']);
+$nom = htmlspecialchars($_POST['nom']);
+$tel = htmlspecialchars($_POST['tel']);
+$mail = htmlspecialchars($_POST['mail']);
 
-if(isset($_POST['validFormAdresseNew'])) {
-    if(!empty($titre) AND ($cout) AND ($date_debut) AND ($nb_place) AND ($contenu) AND ($numero) AND ($rue) AND ($ville) AND ($codePostal)) {
+if(isset($_POST['validFormPrestataireNew'])) {
+    if(!empty($titre) AND ($cout) AND ($date_debut) AND ($nb_place) AND ($contenu) AND ($numero) AND ($rue) AND ($ville) AND ($codePostal) AND ($nom) AND ($mail) AND ($tel)) {
 
         $dateActuelle = date('Y-m-d');
 
@@ -23,9 +26,13 @@ if(isset($_POST['validFormAdresseNew'])) {
             $reqAdresse = $bdd->prepare('INSERT INTO adresse(ville, rue, numero_rue, code_postal) VALUES(:ville, :rue, :numero_rue, :code_postal)');
             $reqAdresse->execute(array('ville' => $ville, 'rue' => $rue, 'numero_rue' => $numero, 'code_postal' => $codePostal));
             $id_a = $bdd->lastInsertId();
+            
+            $reqPrest = $bdd->prepare('INSERT INTO prestataire(raison_social, telephone, mail, id_a) VALUES(:raison_social, :telephone, :mail, :id_a)');
+            $reqPrest->execute(array('raison_social' => $nom, 'telephone' => $tel, 'mail' => $mail, 'id_a' => $id_a));
+            $id_p = $bdd->lastInsertId();
 
-            $req = $bdd->prepare('INSERT INTO formation(titre, cout_jours, date_debut, nb_place, contenu, id_a) VALUES(:titre, :cout_jours, :date_debut, :nb_place, :contenu, :id_a)');
-            $req->execute(array('titre' => $titre,'cout_jours' => $cout, 'date_debut' => $date_debut, 'nb_place' => $nb_place, 'contenu' => $contenu, 'id_a' => $id_a));
+            $req = $bdd->prepare('INSERT INTO formation(titre, cout_jours, date_debut, nb_place, contenu, id_a, id_p) VALUES(:titre, :cout_jours, :date_debut, :nb_place, :contenu, :id_a, :id_p)');
+            $req->execute(array('titre' => $titre,'cout_jours' => $cout, 'date_debut' => $date_debut, 'nb_place' => $nb_place, 'contenu' => $contenu, 'id_a' => $id_a, 'id_p' => $id_p));
 
 
             $req->closeCursor();

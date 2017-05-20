@@ -55,7 +55,6 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                             <ul class="list-unstyled list-inline">
                                 <li class="dropdown dropdown-small">
                                 <li><a href="../controllers/deconnexion.php"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
-                                </li>
                             </ul>
                     </div>
                 </div>
@@ -105,12 +104,6 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formation <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="historiqueChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">historique des formations</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
                             </ul>
                         </li>
                     </ul>

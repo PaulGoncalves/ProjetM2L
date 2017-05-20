@@ -54,144 +54,137 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                             <ul class="list-unstyled list-inline">
                                 <li class="dropdown dropdown-small">
                                 <li><a href="../controllers/deconnexion.php"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
-                                </li>
                             </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div> <!-- End header area -->
 
-    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+        <div class="site-branding-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="logo">
+                            <h1><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a>Crédits : <span class="cart-amunt"> <?php echo $userinfo['nbs_jour']; ?></span><i class="fa fa-credit-card" aria-hidden="true"></i></a>
+                    <div class="col-sm-6">
+                        <div class="shopping-item">
+                            <a>Crédits : <span class="cart-amunt"> <?php echo $userinfo['nbs_jour']; ?></span><i class="fa fa-credit-card" aria-hidden="true"></i></a>
+                        </div>
                     </div>
+
                 </div>
-
             </div>
-        </div>
-    </div> <!-- End site branding area -->
+        </div> <!-- End site branding area -->
 
 
 
 
-    <div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div> 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                        <li class="active"><a href="formationChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
-                        <li><a href="listeSalarieChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des salariés</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formation <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="historiqueChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">historique des formations</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <div class="search">
-                                <form method="POST">
-                                    <input type="text" class="form-control input-sm" maxlength="64" placeholder="Rechercher" name="search"/>
-                                    <button type="submit" class="btn btn-primary btn-sm" name="validRecherche"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
-                </div>  
+        <div class="mainmenu-area">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div> 
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                            <li class="active"><a href="formationChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                            <li><a href="listeSalarieChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des salariés</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formation <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="historiqueChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">historique des formations</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <div class="search">
+                                    <form method="POST">
+                                        <input type="text" class="form-control input-sm" maxlength="64" placeholder="Rechercher" name="search"/>
+                                        <button type="submit" class="btn btn-primary btn-sm" name="validRecherche"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>  
+                </div>
             </div>
-        </div>
-    </div><!-- End mainmenu area -->
+        </div><!-- End mainmenu area -->
 
 
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>Liste des formations</h2>
-                        <?php if(isset($_GET['message'])) { echo $_GET['message']; } ?>
+        <div class="product-big-title-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-bit-title text-center">
+                            <h2>Liste des formations</h2>
+                            <?php if(isset($_GET['message'])) { echo $_GET['message']; } ?>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div> <!-- End Page title area -->
+        </div> <!-- End Page title area -->
 
-    <br />
+        <br />
 
-    <div class="container">
-        <table class="col-xs-12 col-md-12 table table-striped">
-            <tr>
-                <th>Titre</th>
-                <th>Coût (Nb jour)</th>
-                <th>Date</th>
-                <th>Nombre Paces</th>
-                <th>Contenu</th>
-                <th>Détails</th>
-                <th>Ajouter</th>
-            </tr>
-            <?php include('../model/afficheFormationAdmin.php'); ?>
-        </table>
-
-
-    </div>
-
-
-
-    <div class="footer-bottom-area">
         <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="copyright">
-                        <p>&copy; Créer par <a href="#" target="_blank">Paul Goncalves</a></p>
+            <table class="col-xs-12 col-md-12 table table-striped">
+                <tr>
+                    <th>Titre</th>
+                    <th>Coût (Nb jour)</th>
+                    <th>Date</th>
+                    <th>Nombre Paces</th>
+                    <th>Contenu</th>
+                    <th>Détails</th>
+                    <th>Ajouter</th>
+                </tr>
+                <?php include('../model/afficheFormationAdmin.php'); ?>
+            </table>
+
+
+        </div>
+
+
+
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="copyright">
+                            <p>&copy; Créer par <a href="#" target="_blank">Paul Goncalves</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div> <!-- End footer bottom area -->
+        </div> <!-- End footer bottom area -->
 
-    <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
+        <!-- Latest jQuery form server -->
+        <script src="https://code.jquery.com/jquery.min.js"></script>
 
-    <!-- Bootstrap JS form CDN -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <!-- Bootstrap JS form CDN -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <!-- jQuery sticky menu -->
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/jquery.sticky.js"></script>
+        <!-- jQuery sticky menu -->
+        <script src="../js/owl.carousel.min.js"></script>
+        <script src="../js/jquery.sticky.js"></script>
 
-    <!-- jQuery easing -->
-    <script src="../js/jquery.easing.1.3.min.js"></script>
+        <!-- jQuery easing -->
+        <script src="../js/jquery.easing.1.3.min.js"></script>
 
-    <!-- Main Script -->
-    <script src="../js/main.js"></script>
+        <!-- Main Script -->
+        <script src="../js/main.js"></script>
 
-    <?php
+        <?php
                                                                         } else {
         $message="Vous devez vous connecter";
         echo $message.'<br />';
@@ -202,7 +195,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     echo $message.'<br />';
     echo '<a href="../view/login.php">Page de connexion</a>';
 }
-    ?>
+        ?>
 
     </body>
 </html>

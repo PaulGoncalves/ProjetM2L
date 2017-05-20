@@ -60,160 +60,153 @@ $donneesFormation = $reqaffiche->fetch();
                             <ul class="list-unstyled list-inline">
                                 <li class="dropdown dropdown-small">
                                 <li><a href="../controllers/deconnexion.php"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
-                                </li>
                             </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div> <!-- End header area -->
 
-    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+        <div class="site-branding-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="logo">
+                            <h1><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a>Crédits : <span class="cart-amunt"> <?php echo $userinfo['nbs_jour']; ?></span><i class="fa fa-credit-card" aria-hidden="true"></i></a>
+                    <div class="col-sm-6">
+                        <div class="shopping-item">
+                            <a>Crédits : <span class="cart-amunt"> <?php echo $userinfo['nbs_jour']; ?></span><i class="fa fa-credit-card" aria-hidden="true"></i></a>
+                        </div>
                     </div>
+
+
                 </div>
-
-
             </div>
-        </div>
-    </div> <!-- End site branding area -->
+        </div> <!-- End site branding area -->
 
-    <div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div> 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                        <li class="active"><a href="formations.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
-                        <li><a href="contact.php?id_s=<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formation <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="historiqueChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">historique des formations</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>  
+        <div class="mainmenu-area">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div> 
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                            <li class="active"><a href="formations.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                            <li><a href="contact.php?id_s=<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formation <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="historiqueChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">historique des formations</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>  
+                </div>
             </div>
-        </div>
-    </div> <!-- End mainmenu area -->
+        </div> <!-- End mainmenu area -->
 
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>Detail de la <?php echo $donneesFormation['titre']; ?></h2>
+        <div class="product-big-title-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-bit-title text-center">
+                            <h2>Detail de la <?php echo $donneesFormation['titre']; ?></h2>
 
-                        <?php if(isset($_GET['message'])) { echo $_GET['message']; } ?>
+                            <?php if(isset($_GET['message'])) { echo $_GET['message']; } ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 detail_complet">
-                <br />
-                <div class="col-md-3">
-                    <a href="formationChef.php?id_s=<?php echo $_SESSION['id_s'] ?>"><input type="submit" value="Retour à la liste des formations"/></a>
-                </div>
-                <div class="col-md-12">
-                    <br />
-                </div>
-                <div class="col-md-12 entete_detail_formation">
-                    <h2><?php echo $donneesFormation['titre']; ?></h2>
-                </div>
-                <div class="col-md-12"><br /><br /></div>
-                <div class="col-md-12">
-                    <h3>Coût de la formation : <span class="font-19px"><?php echo $donneesFormation['cout_jours']; ?> (En nombres de jours)</span></h3>
-                    <br />
-                </div>
-                <div class="col-md-12">
-                    <h3>Date de début de la formation : <span class="font-19px"><?php echo date('d/m/Y', strtotime($donneesFormation['date_debut'])); ?></span>
-                    </h3>
-                    <br />
-                </div>
-                <div class="col-md-12">
-                    <?php $date_plus_jours = date('d-m-Y', strtotime($donneesFormation['date_debut'].' + '.$donneesFormation['cout_jours'].' days'));
-                    ?>
-                    <h3>Date de fin de la formation : <span class="font-19px"><?php echo $date_plus_jours; ?></span>
-                    </h3>
-                    <br />
-                </div>
-                <div class="col-md-12">
-                    <h3>Nombre de place restante pour cette formation : <span class="font-19px"><?php echo $donneesFormation['nb_place']; ?></span></h3>
-                    <br />
-                </div>
-                <div class="col-md-12">
-                    <h3>Description de la formation : <span class="font-19px"><?php echo $donneesFormation['contenu']; ?></span></h3>
-                    <br />
-                </div>
-                <div class="col-md-12">
-                    <h3>Adresse : <br /></h3><h4><span class="font-19px"><?php echo $donneesFormation['numero_rue'].' '.$donneesFormation['rue']; ?></span></h4>
-                    <h4><span class="font-19px"><?php echo $donneesFormation['code_postal'].', '.$donneesFormation['ville'] ?></span></h4>
-                    <br />
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="copyright">
-                        <p>&copy; Créer par <a href="#" target="_blank">Paul Goncalves</a></p>
+                <div class="col-md-12 detail_complet">
+                    <br />
+                    <div class="col-md-3">
+                        <a href="formationChef.php?id_s=<?php echo $_SESSION['id_s'] ?>"><input type="submit" value="Retour à la liste des formations"/></a>
+                    </div>
+                    <div class="col-md-12">
+                        <br />
+                    </div>
+                    <div class="col-md-12 entete_detail_formation">
+                        <h2><?php echo $donneesFormation['titre']; ?></h2>
+                    </div>
+                    <div class="col-md-12"><br /><br /></div>
+                    <div class="col-md-12">
+                        <h3>Coût de la formation : <span class="font-19px"><?php echo $donneesFormation['cout_jours']; ?> (En nombres de jours)</span></h3>
+                        <br />
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Date de début de la formation : <span class="font-19px"><?php echo date('d/m/Y', strtotime($donneesFormation['date_debut'])); ?></span>
+                        </h3>
+                        <br />
+                    </div>
+                    <div class="col-md-12">
+                        <?php $date_plus_jours = date('d-m-Y', strtotime($donneesFormation['date_debut'].' + '.$donneesFormation['cout_jours'].' days'));
+                        ?>
+                        <h3>Date de fin de la formation : <span class="font-19px"><?php echo $date_plus_jours; ?></span>
+                        </h3>
+                        <br />
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Nombre de place restante pour cette formation : <span class="font-19px"><?php echo $donneesFormation['nb_place']; ?></span></h3>
+                        <br />
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Description de la formation : <span class="font-19px"><?php echo $donneesFormation['contenu']; ?></span></h3>
+                        <br />
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Adresse : <br /></h3><h4><span class="font-19px"><?php echo $donneesFormation['numero_rue'].' '.$donneesFormation['rue']; ?></span></h4>
+                        <h4><span class="font-19px"><?php echo $donneesFormation['code_postal'].', '.$donneesFormation['ville'] ?></span></h4>
+                        <br />
                     </div>
                 </div>
             </div>
         </div>
-    </div> <!-- End footer bottom area -->
 
-    <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
 
-    <!-- Bootstrap JS form CDN -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <!-- jQuery sticky menu -->
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/jquery.sticky.js"></script>
 
-    <!-- jQuery easing -->
-    <script src="../js/jquery.easing.1.3.min.js"></script>
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="copyright">
+                            <p>&copy; Créer par <a href="#" target="_blank">Paul Goncalves</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End footer bottom area -->
 
-    <!-- Main Script -->
-    <script src="../js/main.js"></script>
+        <!-- Latest jQuery form server -->
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+
+        <!-- Bootstrap JS form CDN -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+        <!-- jQuery sticky menu -->
+        <script src="../js/owl.carousel.min.js"></script>
+        <script src="../js/jquery.sticky.js"></script>
+
+        <!-- jQuery easing -->
+        <script src="../js/jquery.easing.1.3.min.js"></script>
+
+        <!-- Main Script -->
+        <script src="../js/main.js"></script>
     </body>
 </html>
 

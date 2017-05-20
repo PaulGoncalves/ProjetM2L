@@ -12,7 +12,7 @@ include('../model/connexionBdd.php');
 $donneesSalarie = $reqSalarie->fetch();
 
     $reqFacture = $bdd->query('SELECT type_formation.id_f, type_formation.id_t, type_formation.type, type_formation.id_s, formation.titre,
-                        formation.cout_jours,formation.date_debut, formation.nb_place, formation.contenu, formation.id_f, formation.id_a, salarie.nom, salarie.prenom, salarie.nbs_jour, adresse.numero_rue, adresse.ville, adresse.rue, adresse.code_postal
+                        formation.cout_jours,formation.date_debut, formation.nb_place, formation.contenu, formation.id_f, formation.id_a, salarie.nom, salarie.prenom, salarie.nbs_jour, adresse.numero_rue, adresse.ville, adresse.rue, adresse.code_postal, prestataire.raison_social, prestataire.mail, prestataire.telephone
                         FROM formation 
                         INNER JOIN type_formation
                         ON formation.id_f = type_formation.id_f
@@ -20,6 +20,8 @@ $donneesSalarie = $reqSalarie->fetch();
                         ON type_formation.id_s = salarie.id_s
                         INNER JOIN adresse
                         ON formation.id_a = adresse.id_a
+                        INNER JOIN prestataire
+                        ON formation.id_p = prestataire.id_p
                         WHERE salarie.id_s = '.$_GET['id_s'].' AND formation.id_f='.$_GET['id_f']);
 
 $donnees = $reqFacture->fetch();
@@ -37,6 +39,9 @@ $rueSalarie = $donneesSalarie['rue'];
 $villeSalarie = $donneesSalarie['ville'];
 $codePostalSalarie = $donneesSalarie['code_postal'];
 $nbjoursSalarie = $donneesSalarie['nbs_jour'];
+$PrestTel = $donnees['telephone'];
+$PrestMail = $donnees['mail'];
+$PrestNom = $donnees['raison_social'];
 
 
 
@@ -45,20 +50,20 @@ class PDF extends FPDF {
     // Header
     function Header() {
 
-        global $nomFormation, $nomSalarie, $prenomSalarie, $cout, $ville, $codePostal, $rue, $numero, $numeroSalarie, $rueSalarie, $villeSalarie, $codePostalSalarie, $nbjoursSalarie;
+        global $nomFormation, $nomSalarie, $prenomSalarie, $cout, $ville, $codePostal, $rue, $numero, $numeroSalarie, $rueSalarie, $villeSalarie, $codePostalSalarie, $nbjoursSalarie, $PrestMail, $PrestNom, $PrestTel;
 
         //Cadre Haut Gauche --> Prestataire
         $this->SetFont('Arial','',16); //Police
-        $this->Cell(0,10, utf8_decode('Nom Prestataire'),0,0);
+        $this->Cell(0,10, utf8_decode($PrestNom),0,0);
         $this->Ln(6);// Saut de ligne
         $this->SetFont('Arial','',12); //Police
         $this->Cell(0,10, utf8_decode($numero.' '.$rue),0,0);
         $this->Ln(5);// Saut de ligne
         $this->Cell(0,10, utf8_decode($codePostal.' '.$ville),0,0);
         $this->Ln(5);// Saut de ligne
-        $this->Cell(0,10, utf8_decode('Tel : 06 06 06 06 06'),0,0);
+        $this->Cell(0,10, utf8_decode('Tel : '.$PrestTel),0,0);
         $this->Ln(5);// Saut de ligne
-        $this->Cell(0,10, utf8_decode('Mail : nomprestataire@gmail.com'),0,0);
+        $this->Cell(0,10, utf8_decode('Mail : '.$PrestMail),0,0);
         $this->Ln(20);// Saut de ligne
 
 
@@ -96,7 +101,7 @@ class PDF extends FPDF {
         $this->Cell(5); // Décalage à droite
         $this->Cell(0,10, utf8_decode($nomFormation),0,0);
         $this->Cell(-48); // Décalage à droite
-        $this->Cell(0,10, utf8_decode($cout.' credits'),0,0);
+        $this->Cell(0,10, utf8_decode($cout.' crédits'),0,0);
 
         //Cadre TOTAL
         $this->Ln(135);// Saut de ligne
@@ -104,14 +109,14 @@ class PDF extends FPDF {
         $this->Cell(0,10, utf8_decode('Total (En Nb jour)'),1,0);
         $this->Line(150, 251, 150, 261);
         $this->Cell(-48); // Décalage à droite
-        $this->Cell(0,10, utf8_decode($cout.' credits'),0,0);
+        $this->Cell(0,10, utf8_decode($cout.' crédits'),0,0);
         
         $this->Ln(12);// Saut de ligne
         $this->Cell(100); // Décalage à droite
         $this->Cell(0,10, utf8_decode('Solde actuel'),1,0);
         $this->Line(150, 263, 150, 273);
         $this->Cell(-48); // Décalage à droite
-        $this->Cell(0,10, utf8_decode($nbjoursSalarie.' credits'),0,0);
+        $this->Cell(0,10, utf8_decode($nbjoursSalarie.' crédits'),0,0);
 
 
 
@@ -138,12 +143,6 @@ $pdf->Cell(40,10);
 $pdf->Output();
 
 
-
-
-
-
-
-echo $message;
 
 
 ?>
