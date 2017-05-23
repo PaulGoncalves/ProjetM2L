@@ -39,15 +39,15 @@ if(isset($_POST['validFormPrestataireNew'])) {
 
             $message = 'La formation à bien été ajoutée';
 
-            header('Location: ../view/Ajoutformation.php?id_s='.$_SESSION['id_s']);
+            header('Location: ../Ajout-Formation/'.$_SESSION['id_s']);
         } else {
-            $message = '<p class="rouge-text">La date d\'ajout de la formation n\'est pas valide</p>';
-            header('Location: ../view/Ajoutformation.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+            $message = 'La date d\'ajout de la formation n\'est pas valide';
+            header('Location: ../Ajout-Formation/'.$_SESSION['id_s'].'-'.$message);
         }
 
     } else {
-        $message = '<p class="rouge-text">Tous les champs doivent être remplis</p>';
-        header('Location: ../view/Ajoutformation.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+        $message = 'Tous les champs doivent être remplis';
+        header('Location: ../Ajout-Formation/'.$_SESSION['id_s'].'-'.$message);
     }
 
 }
@@ -64,19 +64,19 @@ if(isset($_POST['validFormAdresseExist'])) {
             $req->execute(array('titre' => $titre,'cout_jours' => $cout, 'date_debut' => $date_debut, 'nb_place' => $nb_place, 'contenu' => $contenu, 'id_a' => $id_a));
             $req->closeCursor();
 
-            $message = '<p class="vert-text font-18px" align="center">La formation à bien été ajoutée.</p>';
+            $message = 'La formation à bien été ajoutée.';
 
-            header('Location: ../view/Ajoutformation.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+            header('Location: ../Ajout-Formation/'.$_SESSION['id_s'].'-'.$message);
 
         } else {
-            $message = '<p class="rouge-text font-18px" align="center">La date d\'ajout de la formation n\'est pas valide.</p>';
-            header('Location: ../view/Ajoutformation.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+            $message = 'La date d\'ajout de la formation n\'est pas valide.';
+            header('Location: ../Ajout-Formation/'.$_SESSION['id_s'].'-'.$message);
         }
 
     }  else {
 
-        $message = '<p class="rouge-text font-18px" align="center">Tous les champs doivent être remplis.</p>';
-        header('Location: ../view/Ajoutformation.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+        $message = 'Tous les champs doivent être remplis.';
+        header('Location: ../Ajout-Formation/'.$_SESSION['id_s'].'-'.$message);
     }
 }
 

@@ -22,12 +22,12 @@ if(isset($_POST['validRecherche'])) {
             }
 
             echo        '<tr>
-                            <td align="center" colspan="7"><a href="../view/formationChef.php?id_s='.$_SESSION['id_s'].'">Réafficher toutes les formations</a></td>
+                            <td align="center" colspan="7"><a href="../Formations-Chef/'.$_SESSION['id_s'].'">Réafficher toutes les formations</a></td>
                         </tr>';
 
         } else {
             echo '<tr>
-                    <td align="center" colspan="7">Aucun résultat ne correspond à votre recherche<br /> <a href="../view/formationChef.php?id_s='.$_SESSION['id_s'].'">Réafficher toutes les formations</a></td>
+                    <td align="center" colspan="7">Aucun résultat ne correspond à votre recherche<br /> <a href="../Formations-Chef/'.$_SESSION['id_s'].'">Réafficher toutes les formations</a></td>
                 </tr>';
         } 
     } else {
@@ -62,7 +62,7 @@ if(isset($_POST['validRecherche'])) {
                 <td align="center">'.date("d/m/Y", strtotime($donneesformations['date_debut'])).'</td>
                 <td align="center">'.$donneesformations['nb_place'].'</td>
                 <td>'.$donneesformations['contenu'].'</td>
-                <td align="center"><a href="../view/detailFormationChef.php?id_s='.$_SESSION['id_s'].'.&id_f='.$donneesformations['id_f'].'">Afficher les details</a></td>
+                <td align="center"><a href="../Détail-Formation-Chef/'.$_SESSION['id_s'].'/Formation-'.$donneesformations['id_f'].'">Afficher les details</a></td>
                 <td align="center"><a href="../controllers/ajoutFormationPanier.php?id_f='.$donneesformations['id_f'].'">Ajouter</a></td>
             </tr>';
 

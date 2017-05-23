@@ -1,12 +1,20 @@
 <?php
 include('../model/connexionBdd.php');
 session_start();
+
+
+if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
+{
     
-include('../model/infoSalarie.php');
+    
+    $getid = intval($_GET['id_s']);
+    $requser = $bdd->prepare('SELECT * FROM salarie WHERE id_s = ?');
+    $requser->execute(array($getid));
+    $userinfo = $requser->fetch();
+
+    if($_GET['id_s'] == isset($_SESSION['id_s'])) {
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -46,7 +54,7 @@ include('../model/infoSalarie.php');
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="profil.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
+                                <li><a href="../Profil/<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
 
                             </ul>
                         </div>
@@ -57,135 +65,147 @@ include('../model/infoSalarie.php');
                             <ul class="list-unstyled list-inline">
                                 <li class="dropdown dropdown-small">
                                 <li><a href="../controllers/deconnexion.php"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
-                                </li>
                             </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div> <!-- End header area -->
 
-    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+        <div class="site-branding-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="logo">
+                            <h1><a href="../Accueil/<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a>Crédits : <span class="cart-amunt"> <?php echo $userinfo['nbs_jour']; ?></span><i class="fa fa-credit-card" aria-hidden="true"></i></a>
+
+                    <div class="col-sm-6">
+                        <div class="shopping-item">
+                            <a>Crédits : <span class="cart-amunt"> <?php echo $userinfo['nbs_jour']; ?></span><i class="fa fa-credit-card" aria-hidden="true"></i></a>
+                        </div>
                     </div>
-                </div>
 
-                
-            </div>
-        </div>
-    </div> <!-- End site branding area -->
 
-    <div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div> 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                        <li class="active"><a href="formations.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
-                        <li><a href="contact.php?id_s=<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
-                    </ul>
-                </div>  
-            </div>
-        </div>
-    </div> <!-- End mainmenu area -->
-
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>Liste des formations</h2>
-                        
-                        <?php if(isset($_GET['message'])) { echo $_GET['message']; } ?>
-                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div> <!-- End site branding area -->
 
-    
-    <div class="single-product-area">
-        <div class="container">
-            <div class="row">
-                <div>
+        <div class="mainmenu-area">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div> 
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="../Accueil/<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                            <li class="active"><a href="../Formations/<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                            <li><a href="../Contact/<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
+                        </ul>
+                    </div>  
+                </div>
+            </div>
+        </div> <!-- End mainmenu area -->
+
+        <div class="product-big-title-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-bit-title text-center">
+                            <h2>Liste des formations</h2>
+
+                            <?php if(isset($_GET['message'])) { echo '<b class="font-18px">'.$_GET['message'].'</b>'; } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="single-product-area">
+            <div class="container">
+                <div class="row">
                     <div>
-                        <table class="col-md-12 table table-striped">
-                            <tr>
-                                <th>Titre</th>
-                                <th>Coût (Nb jours)</th>
-                                <th>Date début</th>
-                                <th>Nombre Paces</th>
-                                <th>Contenu</th>
-                                <th>Details de la formation</th>
-                                <th>Ajouter au panier</th>
-                            </tr>
-                            <?php include('../model/afficheFormation.php'); ?>
-                        </table>
+                        <div>
+                            <table class="col-md-12 table table-striped">
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Coût (Nb jours)</th>
+                                    <th>Date début</th>
+                                    <th>Nombre Paces</th>
+                                    <th>Contenu</th>
+                                    <th>Details de la formation</th>
+                                    <th>Ajouter au panier</th>
+                                </tr>
+                                <?php include('../model/afficheFormation.php'); ?>
+                            </table>
+                        </div>
                     </div>
+
+
                 </div>
 
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-pagination text-center">
+                            <nav>
 
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-pagination text-center">
-                        <nav>
-                           
-                        </nav>                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="footer-bottom-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="copyright">
-                        <p>&copy; Créer par <a href="#" target="_blank">Paul Goncalves</a></p>
+                            </nav>                        
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> <!-- End footer bottom area -->
 
-    <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
 
-    <!-- Bootstrap JS form CDN -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <!-- jQuery sticky menu -->
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/jquery.sticky.js"></script>
 
-    <!-- jQuery easing -->
-    <script src="../js/jquery.easing.1.3.min.js"></script>
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="copyright">
+                            <p>&copy; Créer par <a href="#" target="_blank">Paul Goncalves</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End footer bottom area -->
 
-    <!-- Main Script -->
-    <script src="../js/main.js"></script>
+        <!-- Latest jQuery form server -->
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+
+        <!-- Bootstrap JS form CDN -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+        <!-- jQuery sticky menu -->
+        <script src="../js/owl.carousel.min.js"></script>
+        <script src="../js/jquery.sticky.js"></script>
+
+        <!-- jQuery easing -->
+        <script src="../js/jquery.easing.1.3.min.js"></script>
+
+        <!-- Main Script -->
+        <script src="../js/main.js"></script>
     </body>
 </html>
+
+<?php
+                                                  } else {
+        $message="Vous devez vous connecter1";
+        echo $message.'<br />';
+        echo '<a href="../Connexion">Page de connexion</a>';
+    }
+} else {
+    $message="Vous devez vous connecter2";
+    echo $message.'<br />';
+    echo '<a href="../Connexion">Page de connexion</a>';
+}
+?>

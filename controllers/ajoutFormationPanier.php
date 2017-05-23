@@ -24,63 +24,63 @@ if($resteCredit >= 0) {
 
             include('../model/reqCreditAjout.php');
 
-            $message = '<p class="vert-text font-18px"><b>La formation à bien été ajoutée</b></p>';
+            $message = 'La formation à bien été ajoutée';
 
-            header('Location: ../view/formations.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+            header('Location: ../Formations/'.$_SESSION['id_s'].'-'.$message);
 
             if($donneessalarie['chef'] == 1) {
 
-                header('Location: ../view/formationChef.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                header('Location: ../Formations-Chef/'.$_SESSION['id_s'].'-'.$message);
 
             }
 
         } else {
-            $message = '<p class="rouge-text font-18px"><b>Il n\'y a plus de place pour cette formation</b></p>';
-            header('Location: ../view/formations.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+            $message = 'Il n\'y a plus de place pour cette formation';
+            header('Location: ../Formations/'.$_SESSION['id_s'].'-'.$message);
 
             if($donneessalarie['chef'] == 1) {
 
-                header('Location: ../view/formationChef.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                header('Location: ../Formations-Chef/'.$_SESSION['id_s'].'-'.$message);
 
             }
         }
     } elseif( $donneesType['type'] == 'Effectuée' ) {
 
-        $message = '<p class="rouge-text font-18px"><b>Vous avez déjà effectué cette formation</b></p>';
-        header('Location: ../view/formations.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+        $message = 'Vous avez déjà effectué cette formation';
+        header('Location: ../Formations/'.$_SESSION['id_s'].'-'.$message);
 
         if($donneessalarie['chef'] == 1) {
 
-            header('Location: ../view/formationChef.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+            header('Location: ../Formations-Chef/'.$_SESSION['id_s'].'-'.$message);
 
         }
 
     } elseif( $donneesType['type'] == "En attente" || $donneesType['type'] == "Validée" ) {
-        $message = '<p class="rouge-text font-18px"><b>Vous avez déjà ajouté cette formation</b></p>';
-        header('Location: ../view/formations.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+        $message = 'Vous avez déjà ajouté cette formation';
+        header('Location: ../Formations/'.$_SESSION['id_s'].'-'.$message);
 
         if($donneessalarie['chef'] == 1) {
 
-            header('Location: ../view/formationChef.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+            header('Location: ../Formations-Chef/'.$_SESSION['id_s'].'-'.$message);
 
         }
     } else { 
-        $message = '<p class="rouge-text font-18px"><b>Vous avez déjà ajouté cette formation</b></p>';
-        header('Location: ../view/formations.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+        $message = 'Vous avez déjà ajouté cette formation';
+        header('Location: ../Formations/'.$_SESSION['id_s'].'-'.$message);
 
         if($donneessalarie['chef'] == 1) {
 
-            header('Location: ../view/formationChef.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+            header('Location: ../Formations-Chef/'.$_SESSION['id_s'].'-'.$message);
         }
     }
 
 } else {
-    $message = '<p class="rouge-text font-18px"><b>Vous n\'avez pas assez de credits</b><p/>';
-    header('Location: ../view/formations.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+    $message = 'Vous n\'avez pas assez de credits';
+    header('Location: ../Formations'.$_SESSION['id_s'].'/'.$message);
 
     if($donneessalarie['chef'] == 1) {
 
-        header('Location: ../view/formationChef.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+        header('Location: ../Formations-Chef/'.$_SESSION['id_s'].'-'.$message);
 
     }
 }

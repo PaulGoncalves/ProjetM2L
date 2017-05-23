@@ -9,7 +9,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     $requser->execute(array($getid));
     $userinfo = $requser->fetch();
 
-    if(isset($_SESSION['id_s']) AND $_GET['id_s'] == $_SESSION['id_s']) {
+    if($_GET['id_s'] == isset($_SESSION['id_s'])) {
 
 ?>
 <!DOCTYPE html>
@@ -45,7 +45,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="profil.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
+                                <li><a href="../Profil/<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
 
                             </ul>
                         </div>
@@ -68,7 +68,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="logo">
-                            <h1><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                            <h1><a href="../Accueil/<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
                         </div>
                     </div>
 
@@ -95,9 +95,9 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     </div> 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                            <li><a href="formations.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
-                            <li><a href="contact.php?id_s=<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
+                            <li><a href="../Accueil/<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                            <li><a href="../Formations/<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                            <li><a href="../Contact/<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
                         </ul>
                     </div>  
                 </div>
@@ -110,6 +110,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <div class="col-md-12">
                         <div class="product-bit-title text-center">
                             <h2>Espace personnel</h2>
+                            <h4><?php if(isset($_GET['message'])) { echo $_GET['message']; } ?></h4>
                         </div>
                     </div>
                 </div>
@@ -119,26 +120,59 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
         <div class="container">
             <div class="row">
                 <div class="col-md-offset-1 col-md-10">
-                    <form method="post" action="">
-                        <br />
-                        <label>Nom :</label><input type="text" value="<?php echo $_SESSION['nom']; ?>" />
-                        <br />
-                        <br />
-                        <label>Prénom :</label><input type="text" value="<?php echo $_SESSION['prenom']; ?>" />
-                        <br />
-                        <br />
-                        <label>Mail :</label><input type="text" value="<?php echo $_SESSION['email']; ?>" />
-                        <br />
-                        <br />
-                        <label>Mot de passe :</label><input type="text" />
-                        <br />
-                        <br />
-                        <input type="submit" value="Modifier les informations"/>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="titre_profil">Nom :</h3>
+                            <h4><?php echo $_SESSION['nom']; ?></h4>
+                        </div>
+                    </div><br /><br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="titre_profil">Prénom :</h3>
+                            <h4><?php echo $_SESSION['prenom']; ?></h4>
+                        </div>
+                    </div><br /><br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="titre_profil">Mail :</h3>
+                            <h4><?php echo $_SESSION['email']; ?></h4>
+                        </div>
+                    </div><br /><br />
+                    <form method="post" action="../controllers/modifMdp.php">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="titre_profil">Mot de passe :</h3>
+                                <input name="ancienMdp" type="password" placeholder="Ancien mot de passe"/><br /><br />
+                                <input name="mdp" type="password" placeholder="Nouveau mot de passe"/><br /><br />
+                                <input name="mdp2" type="password" placeholder="Retapez votre nouveau mot de passe"/>
+                            </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="submit" name="validFormMdp" value="Modifier le mot de passe"/>
+                            </div>
+                        </div>
                     </form>
                     <br />
-                    <label>Identifiant :</label><h3><?php echo $_SESSION['identifiant']; ?></h3>
                     <br />
-                    <label>Nombre de crédits (En nombre de jours) :</label><h3><?php echo $_SESSION['nbs_jour']; ?></h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="titre_profil">Identifiant :</h3>
+                            <h4><?php echo $_SESSION['identifiant']; ?></h4>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="titre_profil">Nombre de crédits (En nombre de jours) :</h3>
+                            <h4><?php echo $_SESSION['nbs_jour']; ?></h4>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
                 </div>
             </div>
         </div>
@@ -172,9 +206,19 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
 
         <!-- Main Script -->
         <script src="../js/main.js"></script>
-        <?php
-                                                                        }
-}
-        ?>
+
     </body>
 </html>
+
+<?php
+        } else {
+        $message="Vous devez vous connecter1";
+        echo $message.'<br />';
+        echo '<a href="../Connexion">Page de connexion</a>';
+    }
+} else {
+    $message="Vous devez vous connecter2";
+    echo $message.'<br />';
+    echo '<a href="../Connexion">Page de connexion</a>';
+}
+?>

@@ -1274,3 +1274,10 @@ li.dropdown.open {
 .lien_historique:hover {
     text-decoration: none;
 }
+
+.titre_profil {
+    border-bottom: 2px solid #1abc9c;
+    border-top: 2px solid #1abc9c;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}

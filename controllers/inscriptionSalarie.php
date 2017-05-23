@@ -59,86 +59,86 @@ if(isset($_POST['ValidInscription'])) {
                                                             $insertsalarie = $bdd->prepare('INSERT INTO salarie (nom, prenom, email, identifiant, mot_de_passe, nbs_jour, chef, admin, id_a)VALUES(:nom, :prenom, :email, :identifiant, :mot_de_passe, :nbs_jour, :chef, :admin, :id_a)');
                                                             $insertsalarie->execute(array('nom' => $nom, 'prenom' => $prenom, 'email' => $email, 'identifiant' => $identifiant, 'mot_de_passe' => $mdp, 'nbs_jour' => $nb_jours, 'chef' => $chefEquipe, 'admin' => $Admin, 'id_a' => $id_a));
                                                             $message = '<p align="center" class="vert-text font-18px">L\'utilisateur a bien été ajouté.</p>';
-                                                            header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                                            header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
 
                                                         } else {
-                                                            $message = '<p align="center" class="vert-text font-18px">La ville n\'est pas valide</p>';
-                                                header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                                            $message = 'La ville n\'est pas valide';
+                                                header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
                                                         }
 
                                                     } else {
-                                                        $message = '<p align="center" class="vert-text font-18px">Le code postal n\'est pas valide</p>';
-                                                header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                                        $message = 'Le code postal n\'est pas valide';
+                                                header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
                                                     }
 
                                                 } else {
 
-                                                    $message = '<p align="center" class="vert-text font-18px">Le nom de rue n\'est pas valide</p>';
-                                                header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                                    $message = 'Le nom de rue n\'est pas valide';
+                                                header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
                                                 }
 
                                             } else {
 
-                                                $message = '<p align="center" class="vert-text font-18px">Le numéro de rue n\'est pas valide</p>';
-                                                header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                                $message = 'Le numéro de rue n\'est pas valide';
+                                                header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
                                             }
 
                                         } else {
 
-                                            $message = '<p align="center" class="vert-text font-18px">Les valeurs Chef d\'équipe ne sont pas valide</p>';
-                                            header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                            $message = 'Les valeurs Chef d\'équipe ne sont pas valide';
+                                            header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
                                         }
 
                                     } else {
 
-                                        $message = '<p align="center" class="vert-text font-18px">Les valeurs admin ne sont pas valide</p>';
-                                        header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                        $message = 'Les valeurs admin ne sont pas valide';
+                                        header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
                                     }
 
                                 } else {
 
-                                    $message = '<p align="center" class="vert-text font-18px">Le nombre de jour n\'est pas valide</p>';
-                                    header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                    $message = 'Le nombre de jour n\'est pas valide';
+                                    header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
                                 }
 
                             } else {
 
-                                $message = '<p align="center" class="vert-text font-18px">Le mot de passe n\'est pas valide</p>';
-                                header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                                $message = 'Le mot de passe n\'est pas valide';
+                                header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
                             }
                         } else {
 
-                            $message = '<p align="center" class="vert-text font-18px">L\'identifiant est déjà utilisé</p>';
-                            header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                            $message = 'L\'identifiant est déjà utilisé';
+                            header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
                         }
 
                     } else {
 
-                        $message = '<p align="center" class="vert-text font-18px">L\'identifiant n\'est pas valide</p>';
-                        header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                        $message = 'L\'identifiant n\'est pas valide';
+                        header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
                     }
 
                 } else {
 
-                    $message = '<p align="center" class="vert-text font-18px">Le mail n\'est pas valide</p>';
-                    header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                    $message = 'Le mail n\'est pas valide';
+                    header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
                 }
 
             } else {
 
-                $message = '<p align="center" class="vert-text font-18px">Le prénom n\'est pas valide</p>';
-                header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+                $message = 'Le prénom n\'est pas valide';
+                header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
             }
 
         } else {
 
-            $message = '<p align="center" class="vert-text font-18px">Le nom n\'est pas valide</p>';
-            header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+            $message = 'Le nom n\'est pas valide';
+            header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
         }
 
     } else {
-        $message = '<p align="center" class="rouge-text font-18px">Vous devez remplir tous les champs.</p>';
-        header('Location: ../view/user.php?id_s='.$_SESSION['id_s'].'&message='.$message);
+        $message = 'Vous devez remplir tous les champs.';
+        header('Location: ../Ajout-Utilisateur/'.$_SESSION['id_s'].'-'.$message);
     }
 }
 

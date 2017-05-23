@@ -4,10 +4,25 @@ session_start();
 
 include('../model/infoSalarie.php');
 
+
 $reqaffiche = $bdd->query('SELECT formation.titre, formation.cout_jours, formation.date_debut, formation.nb_place, formation.contenu, formation.id_a, adresse.rue, adresse.numero_rue, adresse.code_postal, adresse.ville, prestataire.raison_social, prestataire.telephone, prestataire.mail FROM formation INNER JOIN adresse ON formation.id_a = adresse.id_a INNER JOIN prestataire ON formation.id_p = prestataire.id_p WHERE id_f = '.$_GET['id_f']);
 $donneesFormation = $reqaffiche->fetch();
 
+
+if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
+{
+    $getid = intval($_GET['id_s']);
+    $requser = $bdd->prepare('SELECT * FROM salarie WHERE id_s = ?');
+    $requser->execute(array($getid));
+    $userinfo = $requser->fetch();
+
+    if($_GET['id_s'] == isset($_SESSION['id_s'])) {
+
+
+
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -30,9 +45,9 @@ $donneesFormation = $reqaffiche->fetch();
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="../css/owl.carousel.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/responsive.css">
+        <link rel="stylesheet" href="../../css/owl.carousel.css">
+        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="stylesheet" href="../../css/responsive.css">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,7 +64,7 @@ $donneesFormation = $reqaffiche->fetch();
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="profil.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
+                                <li><a href="../Profil/<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
 
                             </ul>
                         </div>
@@ -59,7 +74,7 @@ $donneesFormation = $reqaffiche->fetch();
                         <div class="header-right">
                             <ul class="list-unstyled list-inline">
                                 <li class="dropdown dropdown-small">
-                                <li><a href="../controllers/deconnexion.php"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
+                                <li><a href="../../controllers/deconnexion.php"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
                             </ul>
                         </div>
                     </div>
@@ -72,7 +87,7 @@ $donneesFormation = $reqaffiche->fetch();
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="logo">
-                            <h1><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                            <h1><a href="../Accueil/<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
                         </div>
                     </div>
 
@@ -100,9 +115,9 @@ $donneesFormation = $reqaffiche->fetch();
                     </div> 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                            <li class="active"><a href="formations.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
-                            <li><a href="contact.php?id_s=<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
+                            <li><a href="../Accueil/<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                            <li class="active"><a href="../Formations/<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                            <li><a href="../Contact/<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
                         </ul>
                     </div>  
                 </div>
@@ -116,7 +131,7 @@ $donneesFormation = $reqaffiche->fetch();
                         <div class="product-bit-title text-center">
                             <h2>Detail de la <?php echo $donneesFormation['titre']; ?></h2>
 
-                            <?php if(isset($_GET['message'])) { echo $_GET['message']; } ?>
+                            <?php if(isset($_GET['message'])) { echo '<b class="font-18px">'.$_GET['message'].'</b>'; } ?>
                         </div>
                     </div>
                 </div>
@@ -130,7 +145,7 @@ $donneesFormation = $reqaffiche->fetch();
                     <div class="col-md-12 detail_complet">
                         <br />
                         <div class="col-md-3">
-                            <a href="formations.php?id_s=<?php echo $_SESSION['id_s'] ?>"><input type="submit" value="Retour à la liste des formations"/></a>
+                            <a href="../../Formations/<?php echo $_SESSION['id_s'] ?>"><input type="submit" value="Retour à la liste des formations"/></a>
                         </div>
                         <div class="col-md-12">
                             <br />
@@ -211,3 +226,16 @@ $donneesFormation = $reqaffiche->fetch();
         <script src="../js/main.js"></script>
     </body>
 </html>
+
+<?php
+                                                  } else {
+        $message="Vous devez vous connecter";
+        echo $message.'<br />';
+        echo '<a href="../Connexion">Page de connexion</a>';
+    }
+} else {
+    $message="Vous devez vous connecter";
+    echo $message.'<br />';
+    echo '<a href="../Connexion">Page de connexion</a>';
+}
+?>

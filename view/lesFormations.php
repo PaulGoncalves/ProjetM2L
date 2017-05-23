@@ -60,7 +60,7 @@ Tip 2: you can also add an image using data-image tag
 
                 <div class="sidebar-wrapper">
                     <ul class="nav">
-                        <li class="active">
+                        <li>
                             <a href="../Accueil-Admin/<?php echo $_SESSION['id_s']; ?>">
                                 <i class="material-icons">dashboard</i>
                                 <p>Dashboard</p>
@@ -92,7 +92,7 @@ Tip 2: you can also add an image using data-image tag
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="../Accueil-Admin/<?php echo $_SESSION['id_s']; ?>">Dashboard</a>
+                            <a class="navbar-brand" href="lesUtilisateurs.php?id_s=<?php echo $_SESSION['id_s']; ?>">Les utilisateurs inscrits</a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">
@@ -122,114 +122,33 @@ Tip 2: you can also add an image using data-image tag
 
                 <div class="content">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="card card-stats">
-                                    <div class="card-header" data-background-color="orange">
-                                        <i class="material-icons" style="font-size:52px">account_box</i>
-                                    </div>
-                                    <div class="card-content">
-                                        <p class="category">Nombre d'utilisateurs</p>
-                                        <h3 class="title"><?php echo Statistiques::calculNb("salarie"); ?> utilisateurs</h3>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">library_add</i> <a href="../Utilisateurs-Inscrits/<?php echo $_SESSION['id_s']; ?>">Afficher les utilisateurs inscrits</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="card card-stats">
-                                    <div class="card-header" data-background-color="green">
-                                        <i class="material-icons" style="font-size:52px;">view_list</i>
-                                    </div>
-                                    <div class="card-content">
-                                        <p class="category">Nombre de formations</p>
-                                        <h3 class="title"><?php echo Statistiques::calculNb("formation"); ?> formations</h3>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">library_add</i> <a href="../Inscription-Aux-Formations/<?php echo $_SESSION['id_s']; ?>">Afficher les formations</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="card card-stats">
-                                    <div class="card-header" data-background-color="red">
-                                        <i class="material-icons" style="font-size:52px;">work</i>
-                                    </div>
-                                    <div class="card-content">
-                                        <p class="category">Nombre de salariés</p>
-                                        <h3 class="title"><?php echo Statistiques::nbSalarie(); ?> salariés</h3>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">local_offer</i> Tracked from Github
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="card card-stats">
-                                    <div class="card-header" data-background-color="blue">
-                                        <i class="material-icons" style="font-size:52px;">format_list_bulleted</i>
-                                    </div>
-                                    <div class="card-content">
-                                        <p class="category">Nombre d'inscription aux formations</p>
-                                        <h3 class="title"><?php echo Statistiques::nbInscription(); ?> inscriptions</h3>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">update</i> Just Updated
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="row">
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-12 col-md-12">
                                 <div class="card">
-                                    <div class="card-header" data-background-color="orange">
-                                        <h4 class="title">Informations des employers</h4>
-                                        <p class="category">Texte à mettre</p>
+                                    <div class="card-header" data-background-color="green">
+                                        <h4 class="title">Liste des formations</h4>
+                                        <p class="category">Toutes dates confondues</p>
                                     </div>
                                     <div class="card-content table-responsive">
                                         <table class="table table-hover">
                                             <thead class="text-warning">
-                                                <th>Nom</th>
-                                                <th>Prenom</th>
-                                                <th>Identifiant</th>
-                                                <th>Crédits</th>
+                                                <th>titre</th>
+                                                <th>nombre de places</th>
+                                                <th>Coût (Nbs jours)</th>
+                                                <th class="taille_contenu">Contenu</th>
+                                                <th class="taille_date">date début</th>
                                             </thead>
                                             <tbody>
-                                                <?php 
-                                            
-                                                    while($donneesSalarie = $reqSalarie->fetch()) {
-                                                    echo '<tr>
-                                                            <td>'.$donneesSalarie['nom'].'</td>
-                                                            <td>'.$donneesSalarie['prenom'].'</td>
-                                                            <td>'.$donneesSalarie['identifiant'].'</td>
-                                                            <td>'.$donneesSalarie['nbs_jour'].'</td>
-                                                        </tr>';
-                                                    }
-
-                                                ?>
+                                                <?php include('../controllers/listeFormations.php'); ?>
                                             </tbody>
                                         </table>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">library_add</i> <a href="../Utilisateurs-Inscrits/<?php echo $_SESSION['id_s']; ?>">Afficher les utilisateurs inscrits</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
+
                     </div>
                 </div>
 
@@ -291,11 +210,11 @@ Tip 2: you can also add an image using data-image tag
     } else {
         $message="Vous devez vous connecter";
         echo $message.'<br />';
-        echo '<a href="../Connexion">Page de connexion</a>';
+        echo '<a href="../view/login.php">Page de connexion</a>';
     }
 } else {
     $message="Vous devez vous connecter";
     echo $message.'<br />';
-    echo '<a href="../Connexion">Page de connexion</a>';
+    echo '<a href="../view/login.php">Page de connexion</a>';
 }
 ?>

@@ -10,7 +10,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     $requser->execute(array($getid));
     $userinfo = $requser->fetch();
 
-    if(isset($_SESSION['id_s']) AND $_GET['id_s'] == $_SESSION['id_s']) {
+    if($_GET['id_s'] == isset($_SESSION['id_s'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +51,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <div class="col-md-8 col-xs-6">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="profilChef.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
+                                <li><a href="../Profil-Chef/<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
                             </ul>
                         </div>
                     </div>
@@ -62,133 +62,159 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                                 <li class="dropdown dropdown-small">
                                 <li><a href="../controllers/deconnexion.php"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
                             </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div> <!-- End header area -->
 
-    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+        <div class="site-branding-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="logo">
+                            <h1><a href="../Accueil-Chef/<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a>Crédits : <span class="cart-amunt"> <?php echo $userinfo['nbs_jour']; ?></span><i class="fa fa-credit-card" aria-hidden="true"></i></a>
+                    <div class="col-sm-6">
+                        <div class="shopping-item">
+                            <a>Crédits : <span class="cart-amunt"> <?php echo $userinfo['nbs_jour']; ?></span><i class="fa fa-credit-card" aria-hidden="true"></i></a>
+                        </div>
                     </div>
-                </div>
 
-            </div>
-        </div>
-    </div> <!-- End site branding area -->
-
-    <div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div> 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                        <li><a href="formationChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
-                        <li><a href="listeSalarieChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des salariés</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formation <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="historiqueChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">historique des formations</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>  
-            </div>
-        </div>
-    </div><!-- End mainmenu area -->
-
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>Mon Compte</h2>
-                    </div>
                 </div>
             </div>
-        </div>
-    </div> <!-- End Page title area -->
+        </div> <!-- End site branding area -->
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-offset-1 col-md-10">
-                <form method="post" action="">
-                    <label>Nom :</label><input type="text" />
-                    <br />
-                    <br />
-                    <label>Prénom :</label><input type="text" />
-                    <br />
-                    <br />
-                    <label>Mail :</label><input type="text" />
-                    <br />
-                    <br />
-                    <label>Mot de passe :</label><input type="text" />
-                    <br />
-                    <br />
-                    <input type="submit" value="Modifier les informations"/>
-                </form>
-                <br />
-                <label>Identifiant :</label><h3><?php echo $_SESSION['identifiant']; ?></h3>
+        <div class="mainmenu-area">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div> 
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="../Accueil-Chef/<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                            <li><a href="../Formations-Chef/<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                            <li><a href="../Liste-Salariés/<?php echo $_SESSION['id_s']; ?>">Liste des salariés</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formation <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="../Historique-Chef/<?php echo $_SESSION['id_s']; ?>">historique des formations</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>  
+                </div>
             </div>
-        </div>
-        <p><br /></p>
-        <p><br /></p>
-        <p><br /></p>
-        <p><br /></p>
-        <p><br /></p>
-        <p><br /></p>
-        <p><br /></p>
-        <p><br /></p>
-        <p><br /></p>
-    </div>
+        </div><!-- End mainmenu area -->
 
-
-
-    <div class="footer-bottom-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="copyright">
-                        <p>&copy; Créer par <a href="#" target="_blank">Paul Goncalves</a></p>
+        <div class="product-big-title-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-bit-title text-center">
+                            <h2>Mon Compte</h2>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div> <!-- End Page title area -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="titre_profil">Nom :</h3>
+                            <h4><?php echo $_SESSION['nom']; ?></h4>
+                        </div>
+                    </div><br /><br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="titre_profil">Prénom :</h3>
+                            <h4><?php echo $_SESSION['prenom']; ?></h4>
+                        </div>
+                    </div><br /><br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="titre_profil">Mail :</h3>
+                            <h4><?php echo $_SESSION['email']; ?></h4>
+                        </div>
+                    </div><br /><br />
+                    <form method="post" action="../controllers/modifMdp.php">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="titre_profil">Mot de passe :</h3>
+                                <input name="ancienMdp" type="password" placeholder="Ancien mot de passe"/><br /><br />
+                                <input name="mdp" type="password" placeholder="Nouveau mot de passe"/><br /><br />
+                                <input name="mdp2" type="password" placeholder="Retapez votre nouveau mot de passe"/>
+                            </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="submit" name="validFormMdp" value="Modifier le mot de passe"/>
+                            </div>
+                        </div>
+                    </form>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="titre_profil">Identifiant :</h3>
+                            <h4><?php echo $_SESSION['identifiant']; ?></h4>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="titre_profil">Nombre de crédits (En nombre de jours) :</h3>
+                            <h4><?php echo $_SESSION['nbs_jour']; ?></h4>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                </div>
+            </div>
         </div>
-    </div> <!-- End footer bottom area -->
 
-    <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
 
-    <!-- Bootstrap JS form CDN -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="copyright">
+                            <p>&copy; Créer par <a href="#" target="_blank">Paul Goncalves</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End footer bottom area -->
 
-    <!-- jQuery sticky menu -->
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/jquery.sticky.js"></script>
+        <!-- Latest jQuery form server -->
+        <script src="https://code.jquery.com/jquery.min.js"></script>
 
-    <!-- jQuery easing -->
-    <script src="../js/jquery.easing.1.3.min.js"></script>
+        <!-- Bootstrap JS form CDN -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <!-- Main Script -->
-    <script src="../js/main.js"></script>
+        <!-- jQuery sticky menu -->
+        <script src="../js/owl.carousel.min.js"></script>
+        <script src="../js/jquery.sticky.js"></script>
+
+        <!-- jQuery easing -->
+        <script src="../js/jquery.easing.1.3.min.js"></script>
+
+        <!-- Main Script -->
+        <script src="../js/main.js"></script>
     </body>
 </html>
 
@@ -199,11 +225,11 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                                                                         } else {
         $message="Vous devez vous connecter";
         echo $message.'<br />';
-        echo '<a href="../view/login.php">Page de connexion</a>';
+        echo '<a href="../Connexion">Page de connexion</a>';
     }
 } else {
     $message="Vous devez vous connecter";
     echo $message.'<br />';
-    echo '<a href="../view/login.php">Page de connexion</a>';
+    echo '<a href="../Connexion">Page de connexion</a>';
 }
 ?>

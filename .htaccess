@@ -1,0 +1,30 @@
+RewriteEngine on
+
+RewriteRule ^Accueil/([0-9]+)$ view/index.php?id_s=$1+ [L,QSA]
+RewriteRule ^Accueil-Chef/([0-9]+)$ view/indexChef.php?id_s=$1+ [L,QSA]
+RewriteRule ^Accueil-Admin/([0-9]+)$ view/dashboard.php?id_s=$1+ [L,QSA]
+RewriteRule ^Ajout-Formation/([0-9]+)$ view/Ajoutformation.php?id_s=$1+ [L,QSA]
+RewriteRule ^Ajout-Formation/([0-9]+)-(.+)+$ view/Ajoutformation.php?id_s=$1+&$2+ [L,QSA]
+RewriteRule ^Ajout-Utilisateur/([0-9]+)$ view/user.php?id_s=$1+ [L,QSA]
+RewriteRule ^Ajout-Utilisateur/([0-9]+)-(.+)+$ view/user.php?id_s=$1+&message=$2 [L,QSA]
+RewriteRule ^Utilisateurs-Inscrits/([0-9]+)$ view/lesUtilisateurs.php?id_s=$1+ [L,QSA]
+RewriteRule ^Inscription-Aux-Formations/([0-9]+)$ view/lesFormations.php?id_s=$1+ [L,QSA]
+RewriteRule ^Formations/([0-9]+)$ view/formations.php?id_s=$1+ [L,QSA]
+RewriteRule ^Formations/([0-9]+)-(.+)+$ view/formations.php?id_s=$1+&message=$2+ [L,QSA]
+RewriteRule ^Contact/([0-9]+)$ view/contact.php?id_s=$1+ [L,QSA]
+RewriteRule ^Profil/([0-9]+)$ view/profil.php?id_s=$1+ [L,QSA]
+RewriteRule ^Profil-Chef/([0-9]+)$ view/profilChef.php?id_s=$1+ [L,QSA]
+RewriteRule ^Formations-Chef/([0-9]+)$ view/formationChef.php?id_s=$1+ [L,QSA]
+RewriteRule ^Formations-Chef/([0-9]+)-(.+)+$ view/formationChef.php?id_s=$1+&message=$2+ [L,QSA]
+RewriteRule ^Liste-Salariés/([0-9]+)$ view/listeSalarieChef.php?id_s=$1+ [L,QSA]
+RewriteRule ^Historique-Chef/([0-9]+)$ view/historiqueChef.php?id_s=$1+ [L,QSA]
+RewriteRule ^Détail-Formation-Chef/([0-9]+)/Formation-([0-9])+$ view/detailFormationChef.php?id_s=$1&id_f=$2+ [L,QSA]
+RewriteRule ^Détail-Formation/([0-9])+/Formation-([0-9]+)$ view/detailFormation.php?id_s=$1&id_f=$2+ [L,QSA]
+RewriteRule ^Panier$ panier.php [L]
+RewriteRule ^Connexion$ view/login.php [L,QSA]
+RewriteRule ^Admin$ admin.php [L]
+RewriteRule ^FormationAdmin$ formationAdmin.php [L]
+RewriteRule ^ProfilAdmin$ profilAdmin.php [L]
+
+
+#ErrorDocument 404 http://localhost/Projet/M2L/view/404.php

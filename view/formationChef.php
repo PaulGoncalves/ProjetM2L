@@ -9,7 +9,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     $requser->execute(array($getid));
     $userinfo = $requser->fetch();
 
-    if(isset($_SESSION['id_s']) AND $_GET['id_s'] == $_SESSION['id_s']) {
+    if($_GET['id_s'] == isset($_SESSION['id_s'])) {
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <div class="col-md-8 col-xs-6">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="profilChef.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
+                                <li><a href="../Profil-Chef/<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
                             </ul>
                         </div>
                     </div>
@@ -66,7 +66,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="logo">
-                            <h1><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                            <h1><a href="../Accueil-Chef/<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
                         </div>
                     </div>
 
@@ -96,13 +96,13 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     </div> 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="indexChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                            <li class="active"><a href="formationChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
-                            <li><a href="listeSalarieChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des salariés</a></li>
+                            <li><a href="../Accueil-Chef/<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                            <li class="active"><a href="../Formations-Chef/<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                            <li><a href="../Liste-Salariés/<?php echo $_SESSION['id_s']; ?>">Liste des salariés</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formation <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="historiqueChef.php?id_s=<?php echo $_SESSION['id_s']; ?>">historique des formations</a></li>
+                                    <li><a href="../Historique-Chef/<?php echo $_SESSION['id_s']; ?>">historique des formations</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -128,7 +128,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <div class="col-md-12">
                         <div class="product-bit-title text-center">
                             <h2>Liste des formations</h2>
-                            <?php if(isset($_GET['message'])) { echo $_GET['message']; } ?>
+                            <?php if(isset($_GET['message'])) { echo '<b class="font-18px">'.$_GET['message'].'</b>'; } ?>
                         </div>
                     </div>
                 </div>
@@ -184,21 +184,20 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
         <!-- Main Script -->
         <script src="../js/main.js"></script>
 
-        <?php
-                                                                        } else {
-        $message="Vous devez vous connecter";
-        echo $message.'<br />';
-        echo '<a href="../view/login.php">Page de connexion</a>';
-    }
-} else {
-    $message="Vous devez vous connecter";
-    echo $message.'<br />';
-    echo '<a href="../view/login.php">Page de connexion</a>';
-}
-        ?>
-
     </body>
 </html>
 
 <!-- Dropdown hover -->
 <script src="../js/dropdownHover.js"></script>
+<?php
+                                                  } else {
+        $message="Vous devez vous connecter";
+        echo $message.'<br />';
+        echo '<a href="../Connexion">Page de connexion</a>';
+    }
+} else {
+    $message="Vous devez vous connecter";
+    echo $message.'<br />';
+    echo '<a href="../Connexion">Page de connexion</a>';
+}
+?>

@@ -28,20 +28,20 @@ if(isset($_POST['formconnexion'])) {
 
             if(isset($_POST['retenir_mdp'])) {
                 setcookie('user_id', $userinfo['id_s'], time() + 10);
-                header("Location: ../view/index.php?id_s=".$_SESSION['id_s']);
+                header("Location: Accueil/".$_SESSION['id_s']);
             } else {
 
-                header("Location: ../view/index.php?id_s=".$_SESSION['id_s']);
+                header("Location: Accueil/".$_SESSION['id_s']);
                 
                 if($_SESSION['chef'] == 1) {
 
                     $userinfo = $requser->fetch();
-                    header('Location: ../view/indexChef.php?id_s='.$_SESSION['id_s']);
+                    header('Location: Accueil-Chef/'.$_SESSION['id_s']);
 
                 }elseif($_SESSION['admin'] == 1) {
 
                     $userinfo = $requser->fetch();
-                    header('Location: ../view/dashboard.php?id_s='.$_SESSION['id_s']);
+                    header('Location: Accueil-Admin/'.$_SESSION['id_s']);
                 }
 
             }

@@ -11,7 +11,7 @@ while ($donneesformations = $reponse->fetch())
         <td align="center">'.date("d/m/Y", strtotime($donneesformations['date_debut'])).'</td>
         <td align="center">'.$donneesformations['nb_place'].'</td>
         <td>'.$donneesformations['contenu'].'</td>
-        <td align="center"><a href="../view/detailFormation.php?id_s='.$_SESSION['id_s'].'.&id_f='.$donneesformations['id_f'].'">Afficher les details</a></td>
+        <td align="center"><a href="../Détail-Formation/'.$_SESSION['id_s'].'/Formation-'.$donneesformations['id_f'].'">Afficher les details</a></td>
         <td align="center"><a href="../controllers/ajoutFormationPanier.php?id_f='.$donneesformations['id_f'].'">Ajouter</a></td>
     </tr>';
     

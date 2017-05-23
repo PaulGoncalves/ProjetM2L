@@ -9,7 +9,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     $requser->execute(array($getid));
     $userinfo = $requser->fetch();
 
-    if(isset($_SESSION['id_s']) AND $_GET['id_s'] == $_SESSION['id_s']) {
+    if(isset($_SESSION['id_s']) AND $_GET['id_s']) {
 
         include('../core/stat.class.php');
 ?>
@@ -53,34 +53,28 @@ Tip 2: you can also add an image using data-image tag
 -->
 
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">Espace Administrateur</a>
+                    <a href="../Accueil-Admin/<?php echo $_SESSION['id_s']; ?>" class="simple-text">Espace Administrateur</a>
                 </div>
 
 
                 <div class="sidebar-wrapper">
                     <ul class="nav">
                         <li>
-                            <a href="dashboard.php?id_s=<?php echo $_SESSION['id_s']; ?>">
+                            <a href="../Accueil-Admin/<?php echo $_SESSION['id_s']; ?>">
                                 <i class="material-icons">dashboard</i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li>
-                            <a href="user.php?id_s=<?php echo $_SESSION['id_s']; ?>">
+                            <a href="../Ajout-Utilisateur/<?php echo $_SESSION['id_s']; ?>">
                                 <i class="material-icons">person</i>
                                 <p>Ajout d'utilisateur</p>
                             </a>
                         </li>
                         <li class="active">
-                            <a href="Ajoutformation.php?id_s=<?php echo $_SESSION['id_s']; ?>">
+                            <a href="../Ajout-Formation/<?php echo $_SESSION['id_s']; ?>">
                                 <i class="material-icons">content_paste</i>
                                 <p>Ajout de formations</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="messageAdmin.php?id_s=<?php echo $_SESSION['id_s']; ?>">
-                                <i class="material-icons text-gray">notifications</i>
-                                <p>Message privé</p>
                             </a>
                         </li>
                     </ul>
@@ -97,7 +91,7 @@ Tip 2: you can also add an image using data-image tag
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">Ajout de formations</a>
+                            <a class="navbar-brand" href="../Ajout-Formation/<?php echo $_SESSION['id_s']; ?>">Ajout de formations</a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">
@@ -107,7 +101,7 @@ Tip 2: you can also add an image using data-image tag
                                         <p class="hidden-lg hidden-md">Dashboard</p>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="dashboard.php?id_s=<?php echo $_SESSION['id_s']; ?>">Retour au dasboard</a></li>
+                                        <li><a href="../Accueil-Admin/<?php echo $_SESSION['id_s']; ?>">Retour au dasboard</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -272,7 +266,7 @@ Tip 2: you can also add an image using data-image tag
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
-                                            <i class="material-icons">library_add</i> <a href="#pablo">Afficher les formations</a>
+                                            <i class="material-icons">update</i> Just Updated
                                         </div>
                                     </div>
                                 </div>
@@ -288,7 +282,7 @@ Tip 2: you can also add an image using data-image tag
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
-                                            <i class="material-icons">update</i> Just Updated
+                                            <i class="material-icons">library_add</i> <a href="../Inscription-Aux-Formations/<?php echo $_SESSION['id_s']; ?>">Afficher les formations</a>
                                         </div>
                                     </div>
                                 </div>

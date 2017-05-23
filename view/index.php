@@ -14,7 +14,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
     $requser->execute(array($getid));
     $userinfo = $requser->fetch();
 
-    if($_GET['id_s'] == isset($_SESSION['id_s']) || isset($_COOKIE['user_id'])) {
+    if($_GET['id_s'] == isset($_SESSION['id_s'])) {
         
     if(isset($_COOKIE['user_id'])) { $_SESSION['id_s'] = $_COOKIE['user_id']; }
         
@@ -53,7 +53,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="profil.php?id_s=<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
+                                <li><a href="../Profil/<?php echo $_SESSION['id_s']; ?>"><i class="fa fa-user"></i> Mon Compte</a></li>
 
                             </ul>
                         </div>
@@ -77,7 +77,7 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="logo">
-                            <h1><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
+                            <h1><a href="../Accueil/<?php echo $_SESSION['id_s']; ?>">Form<span>ation</span></a></h1>
                         </div>
                     </div>
 
@@ -105,9 +105,9 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
                     </div> 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="index.php?id_s=<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
-                            <li><a href="formations.php?id_s=<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
-                            <li><a href="contact.php?id_s=<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
+                            <li class="active"><a href="../Accueil/<?php echo $_SESSION['id_s']; ?>">Accueil</a></li>
+                            <li><a href="../Formations/<?php echo $_SESSION['id_s']; ?>">Liste des formations</a></li>
+                            <li><a href="../Contact/<?php echo $_SESSION['id_s']; ?>">Contact</a></li>
                         </ul>
                     </div>  
                 </div>
@@ -207,14 +207,14 @@ if(isset($_GET['id_s']) AND $_GET['id_s'] > 0)
         <script src="js/main.js"></script>
         <?php
                                                                         } else {
-        $message="Vous devez vous connecter";
+        $message="Vous devez vous connecter1";
         echo $message.'<br />';
-        echo '<a href="../view/login.php">Page de connexion</a>';
+        echo '<a href="../Connexion">Page de connexion</a>';
     }
 } else {
-    $message="Vous devez vous connecter";
+    $message="Vous devez vous connecter2";
     echo $message.'<br />';
-    echo '<a href="../view/login.php">Page de connexion</a>';
+    echo '<a href="../Connexion">Page de connexion</a>';
 }
         ?>
     </body>

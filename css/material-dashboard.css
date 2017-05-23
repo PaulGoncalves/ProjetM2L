@@ -5091,3 +5091,12 @@ footer .btn {
     padding-top: 1%;
     padding-left: 2%;
 }
+
+
+.taille_contenu {
+    width: 50%;
+}
+
+.taille_date {
+    width: 10%;
+}
